@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS public."User"
 (
-    "completedCourses" double precision[],
-    "currentSkillLevel" double precision[],
+    "completed_courses" double precision[],
+    "current_skill_level" double precision[],
     userid uuid NOT NULL,
-    "Username" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "User_pkey" PRIMARY KEY (userid)
+    "name" text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "user_pkey" PRIMARY KEY (userid)
 )

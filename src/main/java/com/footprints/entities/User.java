@@ -9,28 +9,25 @@ public class User
     private List<CourseProgress> completedCourses; // Исправлен тип
     private SkillLevel currentSkillLevel; // Исправлен тип
     private final UUID userId;
-    private String username;
+    private String userName;
 
     public User(String username)
     {
         this.userId = UUID.randomUUID();
-        this.username = username;
+        this.userName = username;
         this.completedCourses = new ArrayList<>();
     }
 
-    // Добавление курса
     public void addCompletedCourse(CourseProgress course)
     {
         completedCourses.add(course);
     }
 
-    // Удаление курса
     public void removeCompletedCourse(CourseProgress course)
     {
         completedCourses.remove(course);
     }
 
-    // Получение копии списка курсов
     public List<CourseProgress> getCompletedCourses()
     {
         return new ArrayList<>(completedCourses);
@@ -43,15 +40,14 @@ public class User
 
     public String getUsername()
     {
-        return username;
+        return userName;
     }
 
     public void setUsername(String username)
     {
-        this.username = username;
+        this.userName = username;
     }
 
-    // Расчет уровня навыка
     public void calculateSkillGradient()
     {
         int completedCount = completedCourses.size();
@@ -64,7 +60,6 @@ public class User
         }
     }
 
-    // Геттер для уровня навыка
     public SkillLevel getCurrentSkillLevel()
     {
         return currentSkillLevel;

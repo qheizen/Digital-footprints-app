@@ -1,7 +1,7 @@
-CREATE TABLE IF NOT EXISTS public."Course_ABSTRAX"
+CREATE TABLE IF NOT EXISTS public."Course_ABSTRACT"
 (
-    "courseId" uuid NOT NULL,
+    "course_id" uuid NOT NULL,
     description text COLLATE pg_catalog."default",
     title integer NOT NULL,
-    CONSTRAINT "Course_ABSTRAX_pkey" PRIMARY KEY ("courseId")
+    CONSTRAINT "course_abstract_pkey" PRIMARY KEY ("course_id")
 )
