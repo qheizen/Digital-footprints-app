@@ -11,17 +11,14 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Course {
+public class PracticalContent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID courseId;
-
-    @Column(nullable = false)
-    private String title;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
+    private UUID practicalId;
 
     @Column
-    private int price = 0;
+    private int maxAttempts;
+
+    @Column
+    private double successThreshold;
 }

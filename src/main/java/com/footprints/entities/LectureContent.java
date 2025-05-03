@@ -1,4 +1,4 @@
-package com.footprints.entity;
+package com.footprints.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

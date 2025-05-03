@@ -11,21 +11,24 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TextBlock {
+public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID textBlockId;
+    private UUID videoId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecture_id")
     private LectureContent lecture;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
+    @Column(nullable = false)
+    private String url;
 
     @Column
-    private String formatType;
+    private int duration;
+
+    @Column(columnDefinition = "TEXT")
+    private String caption;
 
     @Column
-    private int blockOrder;
+    private int videoOrder;
 }
