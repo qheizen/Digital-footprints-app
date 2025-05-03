@@ -7,14 +7,7 @@ public class LessonDto {
     private UUID courseId;
     private int lessonOrder;
 
-    public LessonDto() {}
-
-    public LessonDto(UUID lessonId, UUID courseId, int lessonOrder) {
-        this.lessonId = lessonId;
-        this.courseId = courseId;
-        this.lessonOrder = lessonOrder;
-    }
-
+    // Геттеры и сеттеры
     public UUID getLessonId() { return lessonId; }
     public void setLessonId(UUID lessonId) { this.lessonId = lessonId; }
     public UUID getCourseId() { return courseId; }

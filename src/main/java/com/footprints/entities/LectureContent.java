@@ -21,11 +21,9 @@ public class LectureContent {
     @Column(columnDefinition = "jsonb")
     private String cache;
 
-    // Время создания записи
     @Column(nullable = false, updatable = false)
     private OffsetDateTime createdAt = OffsetDateTime.now();
 
-    // Время последнего обновления
     @Column(nullable = false)
     private OffsetDateTime updatedAt = OffsetDateTime.now();
 

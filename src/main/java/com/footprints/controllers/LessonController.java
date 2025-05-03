@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/courses/{courseId}/lessons")
+@RequestMapping("/api/lessons")
 public class LessonController {
     private final LessonService lessonService;
 
@@ -17,23 +17,21 @@ public class LessonController {
         this.lessonService = lessonService;
     }
 
-    @PostMapping
-    public ResponseEntity<LessonDto> create(
-            @PathVariable UUID courseId,
-            @RequestBody LessonDto dto) {
-        dto.setCourseId(courseId);
-        return ResponseEntity.ok(lessonService.createLesson(dto));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<LessonDto>> list(@PathVariable UUID courseId) {
-        return ResponseEntity.ok(lessonService.listLessons(courseId));
+    @GetMapping("/course/{courseId}")
+    public ResponseEntity<List<LessonDto>> getLessonsByCourse(@PathVariable UUID courseId) {
+        return ResponseEntity.ok(lessonService.getLessonsByCourse(courseId));
     }
 
     @GetMapping("/{lessonId}")
-    public ResponseEntity<LessonDto> get(
+    public ResponseEntity<LessonDto> getLesson(@PathVariable UUID lessonId) {
+        return ResponseEntity.ok(lessonService.getLessonById(lessonId));
+    }
+
+    @PostMapping("/course/{courseId}")
+    public ResponseEntity<LessonDto> createLesson(
             @PathVariable UUID courseId,
-            @PathVariable UUID lessonId) {
-        return ResponseEntity.ok(lessonService.getLesson(lessonId));
+            @RequestBody LessonDto lessonDto
+    ) {
+        return ResponseEntity.ok(lessonService.createLesson(courseId, lessonDto));
     }
 }

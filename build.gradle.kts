@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")

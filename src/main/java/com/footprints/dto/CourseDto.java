@@ -7,14 +7,7 @@ public class CourseDto {
     private String title;
     private String description;
 
-    public CourseDto() {}
-
-    public CourseDto(UUID courseId, String title, String description) {
-        this.courseId = courseId;
-        this.title = title;
-        this.description = description;
-    }
-
+    // Геттеры и сеттеры
     public UUID getCourseId() { return courseId; }
     public void setCourseId(UUID courseId) { this.courseId = courseId; }
     public String getTitle() { return title; }

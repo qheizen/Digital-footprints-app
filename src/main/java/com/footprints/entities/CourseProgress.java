@@ -25,7 +25,6 @@ public class CourseProgress {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CompletionStatus completionStatus;
 

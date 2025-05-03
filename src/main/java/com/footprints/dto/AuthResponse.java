@@ -1,7 +1,6 @@
 package com.footprints.dto;
 
 public class AuthResponse {
-
     private String accessToken;
 
     public AuthResponse() {}

@@ -1,45 +1,71 @@
 package com.footprints.services;
 
 import com.footprints.dto.ProgressDto;
-import com.footprints.entities.LessonProgress;
-import com.footprints.entities.CourseProgress;
-import com.footprints.entities.CompletionStatus;
-import com.footprints.repositories.LessonProgressRepository;
+import com.footprints.entities.*;
 import com.footprints.repositories.CourseProgressRepository;
+import com.footprints.repositories.LessonProgressRepository;
+import com.footprints.repositories.LessonRepository;
+import com.footprints.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class ProgressService {
-    private final LessonProgressRepository lessonProgRepo;
-    private final CourseProgressRepository courseProgRepo;
+    private LessonProgressRepository lessonProgRepo;
+    private CourseProgressRepository courseProgRepo;
+    private LessonRepository lessonRepository;
+    private UserRepository userRepository;
+    private CourseRepository courseRepository; // Добавлено поле
 
-    public ProgressService(LessonProgressRepository lessonProgRepo,
-                           CourseProgressRepository courseProgRepo) {
-        this.lessonProgRepo = lessonProgRepo;
-        this.courseProgRepo = courseProgRepo;
-    }
 
-    @Transactional
-    public ProgressDto updateLessonProgress(UUID lessonId, UUID userId, boolean lectureDone, boolean practicalDone) {
-        LessonProgress lp = lessonProgRepo.findByLessonLessonIdAndUserUserId(lessonId, userId)
-                .orElseGet(() -> new LessonProgress(lessonId, userId));
+    public ProgressDto updateCourseProgress(UUID courseId, UUID userId, double finalScore) {
+        CourseProgress cp = courseProgRepo.findByCourse_CourseIdAndUser_UserId(courseId, userId)
+                .orElseGet(() -> {
+                    CourseProgress newCp = new CourseProgress();
+                    newCp.setCourse(courseRepository.getReferenceById(courseId)); // Теперь courseRepository доступен
+                    newCp.setUser(userRepository.getReferenceById(userId));
+                    return newCp;
+                });
+
         lp.setLectureCompleted(lectureDone);
         lp.setPracticalCompleted(practicalDone);
-        if (lectureDone && practicalDone) lp.setCompletionStatus(CompletionStatus.FINISHED);
-        else if (lectureDone || practicalDone) lp.setCompletionStatus(CompletionStatus.IN_PROGRESS);
+        lp.setCompletionStatus(
+                (lectureDone && practicalDone) ? CompletionStatus.FINISHED :
+                        (lectureDone || practicalDone) ? CompletionStatus.IN_PROGRESS :
+                                CompletionStatus.NOT_OPENED
+        );
+
         lessonProgRepo.save(lp);
-        return new ProgressDto(lessonId, userId, lp.getCompletionStatus(), null);
+        return new ProgressDto(
+                lessonId,
+                userId,
+                lp.getCompletionStatus(),
+                null
+        );
     }
 
-    @Transactional
     public ProgressDto updateCourseProgress(UUID courseId, UUID userId, double finalScore) {
-        CourseProgress cp = courseProgRepo.findByCourseCourseIdAndUserUserId(courseId, userId)
-                .orElseGet(() -> new CourseProgress(courseId, userId));
+        CourseProgress cp = courseProgRepo.findByCourse_CourseIdAndUser_UserId(courseId, userId)
+                .orElseGet(() -> {
+                    CourseProgress newCp = new CourseProgress();
+                    newCp.setCourse(courseRepository.getReferenceById(courseId)); // Используем референс
+                    newCp.setUser(userRepository.getReferenceById(userId));
+                    return newCp;
+                });
+
         cp.setFinalScore(finalScore);
         cp.setCompletionStatus(finalScore >= 0.6 ? CompletionStatus.FINISHED : CompletionStatus.IN_PROGRESS);
         courseProgRepo.save(cp);
-        return new ProgressDto(courseId, userId, cp.getCompletionStatus(), cp.getFinalScore());
+
+        return new ProgressDto(
+                courseId,
+                userId,
+                cp.getCompletionStatus(),
+                cp.getFinalScore()
+        );
     }
 }

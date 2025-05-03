@@ -6,5 +6,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @Configuration
 @EnableJpaAuditing
 public class DatabaseConfig {
-    //TODO при необходимости добавить настройки сервера (не на данном этапе)
 }

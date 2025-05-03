@@ -17,31 +17,34 @@ public class LessonProgress {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID progressId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column
-    private boolean isLectureCompleted;
+    private boolean lectureCompleted;
 
     @Column
-    private boolean isPracticalCompleted;
+    private boolean practicalCompleted;
 
     @Column
     private Integer practicalScore;
 
     @Column
-    private boolean isTestCompleted;
+    private boolean testCompleted;
 
     @Column
     private Integer testScore;
 
     @Column
     private OffsetDateTime lastUpdated = OffsetDateTime.now();
+
+    @Enumerated(EnumType.STRING)
+    private CompletionStatus completionStatus;
 
     @PreUpdate
     public void preUpdate() {

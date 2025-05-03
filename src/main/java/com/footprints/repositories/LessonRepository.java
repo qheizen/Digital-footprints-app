@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LessonRepository extends JpaRepository<Lesson, UUID> {
-    List<Lesson> findByCourseCourseIdOrderByLessonOrder(UUID courseId);
+    List<Lesson> findByCourse_CourseId(UUID courseId);
 }

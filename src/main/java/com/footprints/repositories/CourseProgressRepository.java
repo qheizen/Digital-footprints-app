@@ -6,5 +6,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CourseProgressRepository extends JpaRepository<CourseProgress, UUID> {
-    Optional<CourseProgress> findByCourseCourseIdAndUserUserId(UUID courseId, UUID userId);
+    Optional<CourseProgress> findByCourse_CourseIdAndUser_UserId(UUID courseId, UUID userId);
 }
