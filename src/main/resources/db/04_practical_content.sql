@@ -8,7 +8,7 @@ CREATE TABLE practical_content (
 
 CREATE TABLE task (
     task_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    practical_id UUID REFERENCES practical_content(practical_id) ON DELETE CASCADE,
+    practical_id UUID NOT NULL REFERENCES practical_content(practical_id) ON DELETE CASCADE,
     description TEXT NOT NULL,
     instructions TEXT NOT NULL,
     solution_code TEXT,

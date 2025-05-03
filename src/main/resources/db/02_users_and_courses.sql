@@ -3,7 +3,7 @@ CREATE TABLE "user" (
     username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     role VARCHAR(50) NOT NULL DEFAULT 'USER',
-    current_skill_level INT DEFAULT 1,
+    current_skill_level FLOAT DEFAULT 1,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
@@ -13,8 +13,6 @@ CREATE TABLE course (
     title VARCHAR(255) NOT NULL,
     description TEXT,
     price INT DEFAULT 0,
-    course_type VARCHAR(50),
-    xml_content UUID,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
