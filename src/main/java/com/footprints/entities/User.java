@@ -1,75 +1,31 @@
-package com.footprints.entities;
+package com.footprints.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.UUID;
 
-public class User
-{
-    private List<CourseProgress> completedCourses; // Исправлен тип
-    private SkillLevel currentSkillLevel; // Исправлен тип
-    private final UUID userId;
-    private String userName;
+@Entity
+@Table(name = "\"user\"")
+@Getter
+@Setter
+@NoArgsConstructor
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID userId;
 
-    public User(String username)
-    {
-        this.userId = UUID.randomUUID();
-        this.userName = username;
-        this.completedCourses = new ArrayList<>();
-    }
+    @Column(unique = true, nullable = false)
+    private String username;
 
-    public void addCompletedCourse(CourseProgress course)
-    {
-        completedCourses.add(course);
-    }
+    @Column(nullable = false)
+    private String password;
 
-    public void removeCompletedCourse(CourseProgress course)
-    {
-        completedCourses.remove(course);
-    }
+    @Column(nullable = false)
+    private String role;
 
-    public List<CourseProgress> getCompletedCourses()
-    {
-        return new ArrayList<>(completedCourses);
-    }
-
-    public UUID getUserId()
-    {
-        return userId;
-    }
-
-    public String getUsername()
-    {
-        return userName;
-    }
-
-    public void setUsername(String username)
-    {
-        this.userName = username;
-    }
-
-    public void calculateSkillGradient()
-    {
-        int completedCount = completedCourses.size();
-        if (completedCount > 10) {
-            currentSkillLevel = SkillLevel.ADVANCED;
-        } else if (completedCount > 5) {
-            currentSkillLevel = SkillLevel.INTERMEDIATE;
-        } else {
-            currentSkillLevel = SkillLevel.BEGINNER;
-        }
-    }
-
-    public SkillLevel getCurrentSkillLevel()
-    {
-        return currentSkillLevel;
-    }
-
-    // Enum для уровней навыка (можно вынести в отдельный файл)
-    public enum SkillLevel
-    {
-        BEGINNER,
-        INTERMEDIATE,
-        ADVANCED
-    }
+    @Column
+    private float currentSkillLevel = 1;
 }
