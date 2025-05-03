@@ -2,6 +2,7 @@ plugins {
     id("java")
     id ("org.springframework.boot") version "3.4.4"
     id ("io.spring.dependency-management") version "1.1.7"
+    id ("io.freefair.lombok") version "8.6"
 }
 
 group = "com.footprints"
@@ -12,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    compileOnly ("org.projectlombok:lombok:1.18.30")
+    annotationProcessor ("org.projectlombok:lombok:1.18.30")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.projectlombok:lombok")
@@ -45,3 +48,4 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+

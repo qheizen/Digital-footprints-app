@@ -1,32 +1,38 @@
 package com.footprints.dto;
 
 import com.footprints.entities.CompletionStatus;
+import com.footprints.entities.LessonProgress;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
+@Data
+@Schema(description = "DTO для отслеживания прогресса урока")
 public class ProgressDto {
-    private UUID contentId;
-    private UUID userId;
-    private CompletionStatus status;
-    private Double finalScore;
 
-    // Конструктор со всеми полями
-    public ProgressDto(UUID contentId, UUID userId, CompletionStatus status, Double finalScore) {
-        this.contentId = contentId;
-        this.userId = userId;
-        this.status = status;
-        this.finalScore = finalScore;
+    @Schema(description = "ID записи прогресса", accessMode = Schema.AccessMode.READ_ONLY)
+    private UUID progressId;
+
+    @Schema(description = "ID урока", requiredMode = Schema.RequiredMode.REQUIRED)
+    private UUID lessonId;
+
+    @Schema(description = "Статус завершения", requiredMode = Schema.RequiredMode.REQUIRED)
+    private CompletionStatus completionStatus;
+
+    @Schema(description = "Оценка за тест")
+    private Integer testScore;
+
+    @Schema(description = "Время последнего обновления", accessMode = Schema.AccessMode.READ_ONLY)
+    private OffsetDateTime lastUpdated;
+
+    public static ProgressDto fromEntity(LessonProgress progress) {
+        ProgressDto dto = new ProgressDto();
+        dto.setProgressId(progress.getProgressId());
+        dto.setLessonId(progress.getLesson().getLessonId());
+        dto.setCompletionStatus(progress.getCompletionStatus());
+        dto.setTestScore(progress.getTestScore());
+        dto.setLastUpdated(progress.getLastUpdated());
+        return dto;
     }
-
-    // Геттеры и сеттеры
-    public UUID getContentId() { return contentId; }
-    public void setContentId(UUID contentId) { this.contentId = contentId; }
-
-    public UUID getUserId() { return userId; }
-    public void setUserId(UUID userId) { this.userId = userId; }
-
-    public CompletionStatus getStatus() { return status; }
-    public void setStatus(CompletionStatus status) { this.status = status; }
-
-    public Double getFinalScore() { return finalScore; }
-    public void setFinalScore(Double finalScore) { this.finalScore = finalScore; }
 }
