@@ -6,6 +6,7 @@ import com.footprints.repositories.CourseProgressRepository;
 import com.footprints.repositories.LessonProgressRepository;
 import com.footprints.repositories.LessonRepository;
 import com.footprints.repositories.UserRepository;
+import com.footprints.repositories.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,20 +16,24 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Transactional
 public class ProgressService {
-    private LessonProgressRepository lessonProgRepo;
-    private CourseProgressRepository courseProgRepo;
-    private LessonRepository lessonRepository;
-    private UserRepository userRepository;
-    private CourseRepository courseRepository; // Добавлено поле
+    private final LessonProgressRepository lessonProgRepo;
+    private final CourseProgressRepository courseProgRepo;
+    private final LessonRepository lessonRepository;
+    private final UserRepository userRepository;
+    private final CourseRepository courseRepository; // Поле добавлено
 
+    public ProgressDto updateLessonProgress(UUID lessonId, UUID userId, boolean lectureDone, boolean practicalDone) {
+        Lesson lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new RuntimeException("Lesson not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-    public ProgressDto updateCourseProgress(UUID courseId, UUID userId, double finalScore) {
-        CourseProgress cp = courseProgRepo.findByCourse_CourseIdAndUser_UserId(courseId, userId)
+        LessonProgress lp = lessonProgRepo.findByLessonAndUser(lesson, user)
                 .orElseGet(() -> {
-                    CourseProgress newCp = new CourseProgress();
-                    newCp.setCourse(courseRepository.getReferenceById(courseId)); // Теперь courseRepository доступен
-                    newCp.setUser(userRepository.getReferenceById(userId));
-                    return newCp;
+                    LessonProgress newLp = new LessonProgress();
+                    newLp.setLesson(lesson);
+                    newLp.setUser(user);
+                    return newLp;
                 });
 
         lp.setLectureCompleted(lectureDone);
@@ -52,7 +57,7 @@ public class ProgressService {
         CourseProgress cp = courseProgRepo.findByCourse_CourseIdAndUser_UserId(courseId, userId)
                 .orElseGet(() -> {
                     CourseProgress newCp = new CourseProgress();
-                    newCp.setCourse(courseRepository.getReferenceById(courseId)); // Используем референс
+                    newCp.setCourse(courseRepository.getReferenceById(courseId));
                     newCp.setUser(userRepository.getReferenceById(userId));
                     return newCp;
                 });

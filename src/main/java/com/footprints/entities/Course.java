@@ -12,6 +12,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 public class Course {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID courseId;
@@ -23,5 +24,5 @@ public class Course {
     private String description;
 
     @Column
-    private int price = 0;
+    private int price;
 }
