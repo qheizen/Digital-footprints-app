@@ -13,6 +13,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 public class CourseFactoryLog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID logId;
@@ -34,5 +35,5 @@ public class CourseFactoryLog {
     private String errorMessage;
 
     @Column
-    private OffsetDateTime createdAt = OffsetDateTime.now();
+    private final OffsetDateTime createdAt = OffsetDateTime.now();
 }

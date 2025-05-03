@@ -13,6 +13,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 public class ContentValidation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID validationId;
@@ -31,7 +32,7 @@ public class ContentValidation {
     private String validationErrors;
 
     @Column
-    private OffsetDateTime validatedAt = OffsetDateTime.now();
+    private final OffsetDateTime validatedAt = OffsetDateTime.now();
 
     @Column(nullable = false)
     private String validator;

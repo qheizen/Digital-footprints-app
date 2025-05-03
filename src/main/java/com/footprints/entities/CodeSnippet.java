@@ -12,6 +12,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 public class CodeSnippet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID snippetId;
