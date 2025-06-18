@@ -8,6 +8,7 @@
 ### Структура таблиц
 Родион, вставь картинку
 ### Развертывание с помощью Docker
+Docker-compose:
 ```
 version: "3.9"
 services:
@@ -25,7 +26,7 @@ services:
 volumes:
   my-data:
 ```
-или BASH
+или BASH:
 ```
 docker run -d --name trace_db_container -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=trace_db -p 5432:5432 postgres:15
 ```
@@ -33,3 +34,6 @@ docker run -d --name trace_db_container -e POSTGRES_USER=admin -e POSTGRES_PASSW
 ### Особенности базы данных
 - Использование JSONB для хранения структурированных данных
 - Автоматическая очистка связанных данных
+
+### Порядок исполнения
+Исполнять SQL начиная с 00 до 12, или использовать универсальный сценарий.

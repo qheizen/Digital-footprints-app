@@ -14,6 +14,8 @@ repositories {
 
 dependencies {
     compileOnly ("org.projectlombok:lombok:1.18.30")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc:3.2.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc:3.2.0")
     annotationProcessor ("org.projectlombok:lombok:1.18.30")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
