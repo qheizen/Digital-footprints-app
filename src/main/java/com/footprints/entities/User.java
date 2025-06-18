@@ -38,4 +38,8 @@ public class User {
     @LastModifiedDate
     @Column("updated_at")
     private LocalDateTime updatedAt;
+
+    @NotNull(message = "Email is required")
+    @Column("role_id")
+    private Integer roleId;
 }

@@ -26,8 +26,8 @@ public class PersistenceUserDetailsService implements UserDetailsService {
                 () -> new UsernameNotFoundException("User do not have role"));
 
         return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
+                user.getUserEmail(),
+                user.getUserPassword(),
                 Set.of(new SimpleGrantedAuthority(role.getName()))
         );
     }
