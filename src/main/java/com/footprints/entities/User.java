@@ -23,9 +23,13 @@ public class User {
     @Column("username")
     private String username;
 
+    @NotNull(message = "Email is required")
+    @Column("email")
+    private String userEmail;
+
     @NotNull(message = "Password is required")
     @Column("password")
-    private String password;
+    private String userPassword;
 
     @CreatedDate
     @Column("created_at")
