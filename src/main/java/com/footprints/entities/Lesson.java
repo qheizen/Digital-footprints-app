@@ -34,5 +34,4 @@ public class Lesson {
     @CreatedDate
     @Column("created_at")
     private LocalDateTime createdAt;
-
 }
