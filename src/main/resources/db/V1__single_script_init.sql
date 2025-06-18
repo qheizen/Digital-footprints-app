@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS lesson_sections CASCADE;
 DROP TABLE IF EXISTS lessons CASCADE;
 DROP TABLE IF EXISTS courses CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS roles CASCADE;
 
 DROP SEQUENCE IF EXISTS test_questions_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS practice_tasks_id_seq CASCADE;
@@ -102,6 +103,11 @@ CREATE TABLE user_test_answers (
     PRIMARY KEY (user_id, question_id)
 );
 
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL
+);
+
 CREATE INDEX idx_lessons_course ON lessons(course_id);
 CREATE INDEX idx_sections_lesson ON lesson_sections(lesson_id);
 CREATE INDEX idx_progress_user ON user_progress(user_id);
@@ -134,3 +140,4 @@ COMMENT ON TABLE test_questions IS 'Тестовые вопросы';
 COMMENT ON TABLE user_progress IS 'Прогресс пользователей по курсам';
 COMMENT ON TABLE user_section_status IS 'Статус прохождения секций';
 COMMENT ON TABLE user_test_answers IS 'Ответы пользователей на тестовые вопросы';
+COMMENT ON TABLE roles IS 'Роли для обеспечения доступа';

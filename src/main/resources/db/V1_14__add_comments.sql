@@ -8,6 +8,7 @@ COMMENT ON TABLE test_questions IS 'Тестовые вопросы для пр�
 COMMENT ON TABLE user_progress IS 'Прогресс пользователей по прохождению курсов';
 COMMENT ON TABLE user_section_status IS 'Статус прохождения секций пользователями';
 COMMENT ON TABLE user_test_answers IS 'Ответы пользователей на тестовые вопросы';
+COMMENT ON TABLE roles IS 'Роли для обеспечения доступа';
 
 COMMENT ON COLUMN users.password IS 'Хранится только хеш пароля';
 COMMENT ON COLUMN courses.difficulty_level IS 'Уровень сложности от 1 (новичок) до 5 (эксперт)';
