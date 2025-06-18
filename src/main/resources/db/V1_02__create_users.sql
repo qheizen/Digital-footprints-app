@@ -3,6 +3,7 @@ CREATE TABLE users (
     email VARCHAR(50) NOT NULL UNIQUE,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
+    role_id INT NOT NULL REFERENCES roles(role_id),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_login TIMESTAMP
 );

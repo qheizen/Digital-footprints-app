@@ -21,10 +21,16 @@ DROP SEQUENCE IF EXISTS users_id_seq CASCADE;
 
 SET session_replication_role = DEFAULT;
 
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL
+);
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(50) NOT NULL UNIQUE,
     username VARCHAR(50) NOT NULL,
+    role_id INT NOT NULL REFERENCES roles(role_id),
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_login TIMESTAMP
@@ -101,11 +107,6 @@ CREATE TABLE user_test_answers (
     is_correct BOOLEAN NOT NULL,
     answered_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, question_id)
-);
-
-CREATE TABLE roles (
-    role_id SERIAL PRIMARY KEY,
-    role_name VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE INDEX idx_lessons_course ON lessons(course_id);
