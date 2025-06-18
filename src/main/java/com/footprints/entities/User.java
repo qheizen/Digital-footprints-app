@@ -1,75 +1,37 @@
 package com.footprints.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import org.springframework.data.annotation.*;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-public class User
-{
-    private List<CourseProgress> completedCourses; // Исправлен тип
-    private SkillLevel currentSkillLevel; // Исправлен тип
-    private final UUID userId;
-    private String userName;
+import java.time.LocalDateTime;
 
-    public User(String username)
-    {
-        this.userId = UUID.randomUUID();
-        this.userName = username;
-        this.completedCourses = new ArrayList<>();
-    }
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table("users")
+public class User {
 
-    public void addCompletedCourse(CourseProgress course)
-    {
-        completedCourses.add(course);
-    }
+    @Id
+    @Column("id")
+    private Long id;
 
-    public void removeCompletedCourse(CourseProgress course)
-    {
-        completedCourses.remove(course);
-    }
+    @NotNull(message = "Username is required")
+    @Column("username")
+    private String username;
 
-    public List<CourseProgress> getCompletedCourses()
-    {
-        return new ArrayList<>(completedCourses);
-    }
+    @NotNull(message = "Password is required")
+    @Column("password")
+    private String password;
 
-    public UUID getUserId()
-    {
-        return userId;
-    }
+    @CreatedDate
+    @Column("created_at")
+    private LocalDateTime createdAt;
 
-    public String getUsername()
-    {
-        return userName;
-    }
-
-    public void setUsername(String username)
-    {
-        this.userName = username;
-    }
-
-    public void calculateSkillGradient()
-    {
-        int completedCount = completedCourses.size();
-        if (completedCount > 10) {
-            currentSkillLevel = SkillLevel.ADVANCED;
-        } else if (completedCount > 5) {
-            currentSkillLevel = SkillLevel.INTERMEDIATE;
-        } else {
-            currentSkillLevel = SkillLevel.BEGINNER;
-        }
-    }
-
-    public SkillLevel getCurrentSkillLevel()
-    {
-        return currentSkillLevel;
-    }
-
-    // Enum для уровней навыка (можно вынести в отдельный файл)
-    public enum SkillLevel
-    {
-        BEGINNER,
-        INTERMEDIATE,
-        ADVANCED
-    }
+    @LastModifiedDate
+    @Column("updated_at")
+    private LocalDateTime updatedAt;
 }
