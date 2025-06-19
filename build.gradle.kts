@@ -3,6 +3,7 @@ plugins {
     id ("org.springframework.boot") version "3.4.4"
     id ("io.spring.dependency-management") version "1.1.7"
     id ("io.freefair.lombok") version "8.6"
+    kotlin("jvm")
 }
 
 group = "com.footprints"
@@ -45,9 +46,13 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     compileOnly("org.projectlombok:lombok:1.18.34")
     annotationProcessor("org.projectlombok:lombok:1.18.34")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 
+kotlin {
+    jvmToolchain(21)
+}
