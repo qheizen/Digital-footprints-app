@@ -15,7 +15,7 @@ public record CourseResponse(
         @Schema(description = "Описание курса", example = "Основы программирования на Java")
         String description,
 
-        @Schema(description = "Уровень сложности (1-5)", example = "3", requiredMode = REQUIRED)
+        @Schema(description = "Уровень сложности (1-20)", example = "3", requiredMode = REQUIRED)
         Integer difficultyLevel,
 
         @Schema(description = "Дата создания", example = "2023-01-10T08:00:00")
