@@ -12,4 +12,5 @@ public record UserLoginRequest(
         @Schema(description = "Пароль", requiredMode = Schema.RequiredMode.REQUIRED)
         @NotBlank(message = "Password не может быть пустым")
         String password
-) {}
+) {
+}

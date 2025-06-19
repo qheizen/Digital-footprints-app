@@ -3,6 +3,8 @@ package com.footprints.dto.response;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.List;
+
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
 @Schema(description = "Содержимое секции урока")
@@ -21,4 +23,5 @@ public record SectionContentResponse(
 
         @Schema(description = "Тестовые вопросы")
         List<TestQuestionResponse> testQuestions
-) {}
+) {
+}

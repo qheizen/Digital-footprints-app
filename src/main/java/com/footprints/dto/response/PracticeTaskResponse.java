@@ -14,4 +14,5 @@ public record PracticeTaskResponse(
 
         @Schema(description = "Решение", example = "int number = 10;")
         String solution
-) {}
+) {
+}

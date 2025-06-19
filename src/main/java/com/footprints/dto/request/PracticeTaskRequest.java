@@ -7,4 +7,5 @@ public record PracticeTaskRequest(
         @NotBlank String question,
         @NotBlank String solution,
         @Positive Integer orderIndex
-) { }
+) {
+}

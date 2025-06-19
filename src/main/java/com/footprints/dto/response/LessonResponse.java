@@ -20,4 +20,5 @@ public record LessonResponse(
 
         @Schema(description = "Количество секций", example = "3")
         Integer sectionCount
-) {}
+) {
+}

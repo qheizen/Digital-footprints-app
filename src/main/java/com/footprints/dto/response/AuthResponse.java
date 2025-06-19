@@ -12,4 +12,5 @@ public record AuthResponse(
 
         @Schema(description = "Данные пользователя")
         UserResponse user
-) {}
+) {
+}

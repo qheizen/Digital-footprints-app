@@ -4,8 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-public record LessonRequest (
+public record LessonRequest(
         @NotNull Long courseId,
         @NotBlank String title,
         @Positive Integer orderIndex
-) { }
+) {
+}

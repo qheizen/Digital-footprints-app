@@ -15,4 +15,5 @@ public record ApiResponse<T>(
 
         @Schema(description = "Данные")
         T data
-) {}
+) {
+}

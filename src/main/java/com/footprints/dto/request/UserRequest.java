@@ -9,12 +9,13 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
 @Schema(description = "Пользователь")
 public record UserRequest(
-    @Schema(description = "Имя", examples = "Sasha", requiredMode = REQUIRED)
-    @NotBlank @Size(max=100)
-    String username,
+        @Schema(description = "Имя", examples = "Sasha", requiredMode = REQUIRED)
+        @NotBlank @Size(max = 100)
+        String username,
 
-    String userEmail,
+        String userEmail,
 
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", message = "Weak password")
-    String userPassword
-) {}
+        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", message = "Weak password")
+        String userPassword
+) {
+}
