@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-20T17:08:00+0300",
+    date = "2025-06-20T21:36:15+0300",
     comments = "version: 1.6.0, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.6.jar, environment: Java 21.0.6 (Eclipse Adoptium)"
 )
 @Component
@@ -19,13 +19,13 @@ public class LectureContentMapperImpl implements LectureContentMapper {
             return null;
         }
 
-        LectureContent.LectureContentBuilder lectureContent = LectureContent.builder();
+        LectureContent lectureContent = new LectureContent();
 
         if ( request != null ) {
-            lectureContent.content( request.content() );
+            lectureContent.setContent( request.content() );
         }
-        lectureContent.sectionId( sectionId );
+        lectureContent.setSectionId( sectionId );
 
-        return lectureContent.build();
+        return lectureContent;
     }
 }

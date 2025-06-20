@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-20T17:08:00+0300",
+    date = "2025-06-20T21:36:15+0300",
     comments = "version: 1.6.0, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.6.jar, environment: Java 21.0.6 (Eclipse Adoptium)"
 )
 @Component
@@ -21,17 +21,17 @@ public class UserProgressMapperImpl implements UserProgressMapper {
             return null;
         }
 
-        UserProgress.UserProgressBuilder userProgress = UserProgress.builder();
+        UserProgress userProgress = new UserProgress();
 
         if ( request != null ) {
-            userProgress.completionPercentage( request.completionPercentage() );
-            userProgress.correctnessPercentage( request.correctnessPercentage() );
+            userProgress.setCompletionPercentage( request.completionPercentage() );
+            userProgress.setCorrectnessPercentage( request.correctnessPercentage() );
         }
-        userProgress.userId( userId );
-        userProgress.courseId( courseId );
-        userProgress.lastAccessed( java.time.LocalDateTime.now() );
+        userProgress.setUserId( userId );
+        userProgress.setCourseId( courseId );
+        userProgress.setLastAccessed( java.time.LocalDateTime.now() );
 
-        return userProgress.build();
+        return userProgress;
     }
 
     @Override

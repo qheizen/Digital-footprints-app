@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-20T17:08:00+0300",
+    date = "2025-06-20T21:36:15+0300",
     comments = "version: 1.6.0, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.6.jar, environment: Java 21.0.6 (Eclipse Adoptium)"
 )
 @Component
@@ -24,14 +24,14 @@ public class CourseMapperImpl implements CourseMapper {
             return null;
         }
 
-        Course.CourseBuilder course = Course.builder();
+        Course course = new Course();
 
-        course.title( request.title() );
-        course.description( request.description() );
-        course.keyWord( request.keyWord() );
-        course.difficultyLevel( request.difficultyLevel() );
+        course.setTitle( request.title() );
+        course.setDescription( request.description() );
+        course.setKeyWord( request.keyWord() );
+        course.setDifficultyLevel( request.difficultyLevel() );
 
-        return course.build();
+        return course;
     }
 
     @Override

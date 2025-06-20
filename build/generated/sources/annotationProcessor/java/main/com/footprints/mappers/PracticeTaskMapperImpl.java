@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-20T17:08:00+0300",
+    date = "2025-06-20T21:36:15+0300",
     comments = "version: 1.6.0, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.6.jar, environment: Java 21.0.6 (Eclipse Adoptium)"
 )
 @Component
@@ -20,16 +20,16 @@ public class PracticeTaskMapperImpl implements PracticeTaskMapper {
             return null;
         }
 
-        PracticeTask.PracticeTaskBuilder practiceTask = PracticeTask.builder();
+        PracticeTask practiceTask = new PracticeTask();
 
         if ( request != null ) {
-            practiceTask.orderIndex( request.orderIndex() );
-            practiceTask.question( request.question() );
-            practiceTask.solution( request.solution() );
+            practiceTask.setOrderIndex( request.orderIndex() );
+            practiceTask.setQuestion( request.question() );
+            practiceTask.setSolution( request.solution() );
         }
-        practiceTask.sectionId( sectionId );
+        practiceTask.setSectionId( sectionId );
 
-        return practiceTask.build();
+        return practiceTask;
     }
 
     @Override

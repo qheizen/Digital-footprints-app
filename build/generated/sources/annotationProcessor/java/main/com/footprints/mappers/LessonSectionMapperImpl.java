@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-20T17:08:00+0300",
+    date = "2025-06-20T21:36:15+0300",
     comments = "version: 1.6.0, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.6.jar, environment: Java 21.0.6 (Eclipse Adoptium)"
 )
 @Component
@@ -19,12 +19,12 @@ public class LessonSectionMapperImpl implements LessonSectionMapper {
             return null;
         }
 
-        LessonSection.LessonSectionBuilder lessonSection = LessonSection.builder();
+        LessonSection lessonSection = new LessonSection();
 
-        lessonSection.lessonId( request.lessonId() );
-        lessonSection.sectionType( request.sectionType() );
-        lessonSection.orderIndex( request.orderIndex() );
+        lessonSection.setLessonId( request.lessonId() );
+        lessonSection.setSectionType( request.sectionType() );
+        lessonSection.setOrderIndex( request.orderIndex() );
 
-        return lessonSection.build();
+        return lessonSection;
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-20T17:07:59+0300",
+    date = "2025-06-20T21:36:15+0300",
     comments = "version: 1.6.0, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.6.jar, environment: Java 21.0.6 (Eclipse Adoptium)"
 )
 @Component
@@ -23,16 +23,16 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
 
-        User.UserBuilder user = User.builder();
+        User user = new User();
 
         if ( request != null ) {
-            user.userPassword( request.userPassword() );
-            user.username( request.username() );
-            user.userEmail( request.userEmail() );
+            user.setUserPassword( request.userPassword() );
+            user.setUsername( request.username() );
+            user.setUserEmail( request.userEmail() );
         }
-        user.roleId( roleId );
+        user.setRoleId( roleId );
 
-        return user.build();
+        return user;
     }
 
     @Override
