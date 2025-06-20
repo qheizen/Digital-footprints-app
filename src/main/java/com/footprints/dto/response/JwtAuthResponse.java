@@ -2,15 +2,16 @@ package com.footprints.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "Ответ аутентификации")
-public record AuthResponse(
+public record JwtAuthResponse(
         @Schema(description = "JWT токен", example = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")
-        String token,
+        String accessToken,
 
         @Schema(description = "Тип токена", example = "Bearer")
-        String tokenType,
-
-        @Schema(description = "Данные пользователя")
-        UserResponse user
+        String tokenType
 ) {
+    private static final String BEARER = "Bearer";
+
+    public JwtAuthResponse(String accessToken) {
+        this(accessToken, BEARER);
+    }
 }
