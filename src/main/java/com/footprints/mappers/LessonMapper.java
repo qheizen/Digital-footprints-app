@@ -9,11 +9,11 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface LessonMapper {
 
-    @Mapping(target="createdAt", ignore=true)
+    @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "lessonId", ignore = true)
     Lesson toEntity(LessonRequest request);
 
-    @Mapping(source = "entity.lessonId", target = "id")
+    @Mapping(source = "lessonId", target = "id")
+    @Mapping(source = "sectionCount", target = "sectionCount")
     LessonResponse toResponse(Lesson entity, Integer sectionCount);
-
 }

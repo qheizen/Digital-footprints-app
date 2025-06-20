@@ -1,10 +1,28 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/yourdb
-    username: admin
+    url: jdbc:postgresql://localhost:5432/footprints
+    username: postgres
     password: admin
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    driver-class-name: org.postgresql.Driver
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration
+
+server:
+  port: 8080
+
+jwt:
+  secret: eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5OTY1MjY0NywiaWF0IjoxNjk5NjUyNjQ3fQ.6Z2LxRZzC7L7ZJ5Z2LxRZzC7L7ZJ5Z2LxRZzC7L7ZJ5
+  expiration-milliseconds: 86400000

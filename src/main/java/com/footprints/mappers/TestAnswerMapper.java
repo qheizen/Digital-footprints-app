@@ -8,10 +8,10 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface TestAnswerMapper {
 
-    @Mapping(target = "userId", ignore = true)
-    @Mapping(target = "questionId", source = "request.questionId")
+    @Mapping(source = "userId", target = "userId")
+    @Mapping(source = "request.questionId", target = "questionId")
     @Mapping(source = "request.answer", target = "answer")
-    @Mapping(target = "isCorrect", ignore = true) // рассчитывается в сервисе
-    @Mapping(target = "answeredAt", ignore = true)  // заполняется в сервисе
+    @Mapping(target = "isCorrect", ignore = true)
+    @Mapping(target = "answeredAt", ignore = true)
     UserTestAnswer toEntity(TestAnswerRequest request, Long userId);
 }

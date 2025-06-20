@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface LectureContentMapper {
 
-    @Mapping(target = "sectionId", source = "sectionId")
+    @Mapping(source = "sectionId", target = "sectionId")
     LectureContent toEntity(LectureContentRequest request, Long sectionId);
 }
