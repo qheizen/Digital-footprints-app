@@ -8,7 +8,6 @@ import com.footprints.repositories.UserRepository;
 import com.footprints.resources.Messages;
 import com.footprints.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +26,7 @@ public class AuthService {
 
     private static final Integer DEFAULT_ROLE_ID = 1;
 
-    public JwtAuthResponse login(@NotNull UserLoginRequest request) {
+    public JwtAuthResponse login(UserLoginRequest request) {
         var authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.email(),
                 request.password()
@@ -37,7 +36,7 @@ public class AuthService {
         return new JwtAuthResponse(token);
     }
 
-    public JwtAuthResponse register(@NotNull UserRegisterRequest request) {
+    public JwtAuthResponse register(UserRegisterRequest request) {
         if (userRepository.existsByUserEmail(request.email())) {
             throw new RuntimeException(Messages.EMAIL_EXISTS);
         }
