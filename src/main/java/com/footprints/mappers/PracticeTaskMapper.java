@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface PracticeTaskMapper {
 
     @Mapping(target = "taskId", ignore = true)
-    @Mapping(source = "orderIndex", target = "orderIndex")
+    @Mapping(source = "request.orderIndex", target = "orderIndex")
     PracticeTask toEntity(PracticeTaskRequest request, Long sectionId);
 
     PracticeTaskResponse toResponse(PracticeTask entity);
