@@ -20,7 +20,7 @@ public class PersistenceUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        var user = userRepository.findByEmail(email).orElseThrow(
+        var user = userRepository.findByUserEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("User not exists by e-mail"));
         var role = roleRepository.findById(user.getRoleId()).orElseThrow(
                 () -> new UsernameNotFoundException("User do not have role"));

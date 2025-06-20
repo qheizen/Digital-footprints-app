@@ -38,7 +38,7 @@ public class AuthService {
     }
 
     public JwtAuthResponse register(@NotNull UserRegisterRequest request) {
-        if (userRepository.existsByEmail(request.email())) {
+        if (userRepository.existsByUserEmail(request.email())) {
             throw new RuntimeException(Messages.EMAIL_EXISTS);
         }
         String encodedPassword = passwordEncoder.encode(request.password());

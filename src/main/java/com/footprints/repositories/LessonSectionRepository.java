@@ -14,5 +14,5 @@ public interface LessonSectionRepository extends PagingAndSortingRepository<Less
 
     List<LessonSection> findBySectionType(String sectionType);
 
-    Optional<LessonSection> findByLessonIdAndOrderIndex(Long sectionId, Integer orderIndex);
+    Optional<LessonSection> findByLessonIdAndOrderIndex(Long lessonId, Integer orderIndex);
 }
