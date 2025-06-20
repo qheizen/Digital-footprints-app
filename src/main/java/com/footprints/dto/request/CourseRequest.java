@@ -7,14 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 
 public record CourseRequest(
-        @NotBlank
-        String title,
+        @NotBlank String title,
         String description,
         String keyWord,
-
-        @Min(1)
-        @Max(20)
-        @NotNull
-        Integer difficultyLevel
-) {
-}
+        @Min(1) @Max(20) @NotNull Integer difficultyLevel
+) {}

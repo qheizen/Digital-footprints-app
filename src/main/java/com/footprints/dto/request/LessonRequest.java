@@ -7,6 +7,6 @@ import jakarta.validation.constraints.Positive;
 public record LessonRequest(
         @NotNull Long courseId,
         @NotBlank String title,
-        @Positive Integer orderIndex
-) {
-}
+        @NotNull @Positive Integer orderIndex
+) {}
+

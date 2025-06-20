@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Репозиторий UserSectionStatus с составным ключом.
- */
 @Repository
 public interface UserSectionStatusRepository extends CrudRepository<UserSectionStatus, UserSectionStatusId> {
 

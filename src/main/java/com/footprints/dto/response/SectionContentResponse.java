@@ -5,14 +5,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
 
-import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
 @Schema(description = "Содержимое секции урока")
 public record SectionContentResponse(
-        @Schema(description = "ID секции", example = "1", requiredMode = REQUIRED)
+        @Schema(description = "ID секции", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
         Long sectionId,
 
-        @Schema(description = "Тип секции", example = "LECTURE", requiredMode = REQUIRED)
+        @Schema(description = "Тип секции", example = "LECTURE", requiredMode = Schema.RequiredMode.REQUIRED)
         String sectionType,
 
         @Schema(description = "Содержимое (для лекций)")
@@ -23,5 +22,4 @@ public record SectionContentResponse(
 
         @Schema(description = "Тестовые вопросы")
         List<TestQuestionResponse> testQuestions
-) {
-}
+) {}

@@ -4,18 +4,21 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
 
-import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
-@Schema(description = "Пользователь")
+@Schema(description = "Данные пользователя для создания/обновления")
 public record UserRequest(
-        @Schema(description = "Имя", examples = "Sasha", requiredMode = REQUIRED)
+        @Schema(description = "Имя пользователя", examples = "Sasha", requiredMode = Schema.RequiredMode.REQUIRED)
         @NotBlank @Size(max = 100)
         String username,
 
+        @Schema(description = "Email пользователя", requiredMode = Schema.RequiredMode.REQUIRED)
+        @Email(message = "Некорректный email")
+        @NotBlank
         String userEmail,
 
-        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", message = "Weak password")
+        @Schema(description = "Пароль пользователя")
+        @NotBlank @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", message = "Weak password")
         String userPassword
-) {
-}
+) { }

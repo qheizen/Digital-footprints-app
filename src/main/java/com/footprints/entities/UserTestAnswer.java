@@ -31,6 +31,7 @@ public class UserTestAnswer implements Persistable<UserTestAnswerId> {
     private LocalDateTime answeredAt;
 
     @Transient
+    @Builder.Default
     private boolean isNew = true;
 
     @Override

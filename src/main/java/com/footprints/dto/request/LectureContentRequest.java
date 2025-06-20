@@ -5,5 +5,4 @@ import jakarta.validation.constraints.NotNull;
 
 public record LectureContentRequest(
         @NotNull JsonNode content
-) {
-}
+) {}

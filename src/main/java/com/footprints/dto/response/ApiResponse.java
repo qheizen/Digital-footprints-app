@@ -2,7 +2,6 @@ package com.footprints.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "Базовый ответ API")
 public record ApiResponse<T>(
         @Schema(description = "Статус операции", example = "success")
         String status,
@@ -15,5 +14,4 @@ public record ApiResponse<T>(
 
         @Schema(description = "Данные")
         T data
-) {
-}
+) {}

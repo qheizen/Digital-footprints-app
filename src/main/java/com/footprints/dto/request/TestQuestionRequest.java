@@ -6,9 +6,9 @@ import jakarta.validation.constraints.Positive;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public record TestQuestionRequest(
+        @NotNull Long sectionId,
         @NotBlank String question,
         @NotNull JsonNode options,
         @NotBlank String correctAnswer,
-        @Positive Integer orderIndex
-) {
-}
+        @NotNull @Positive Integer orderIndex
+) {}
