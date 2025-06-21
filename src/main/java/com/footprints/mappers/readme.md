@@ -48,7 +48,7 @@ LessonSection toEntity(LessonSectionRequest request);
 ```
 
 ### PracticeTaskMapper
-Создаёт `PracticeTask` из запроса и ID секции и мапит обратно в ответ.
+Создаёт `PracticeTask` из запроса и ID секции и мапингует обратно в ответ.
 ```java
 PracticeTask toEntity(PracticeTaskRequest request, Long sectionId);
 PracticeTaskResponse toResponse(PracticeTask entity);
