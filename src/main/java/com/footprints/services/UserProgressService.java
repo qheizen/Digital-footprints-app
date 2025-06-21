@@ -3,11 +3,11 @@ package com.footprints.services;
 import com.footprints.dto.request.ProgressUpdateRequest;
 import com.footprints.dto.response.UserProgressResponse;
 import com.footprints.entities.UserProgress;
-import com.footprints.entities.UserProgressId;
 import com.footprints.mappers.UserProgressMapper;
 import com.footprints.repositories.UserProgressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,22 +20,20 @@ public class UserProgressService {
     private final UserProgressMapper progressMapper;
 
     public UserProgressResponse updateProgress(ProgressUpdateRequest request) {
-        UserProgressId id = new UserProgressId(request.userId(), request.courseId());
-        UserProgress progress = progressRepository.findById(id)
+        UserProgress progress = progressRepository.findByUserIdAndCourseId(request.userId(), request.courseId())
                 .orElseGet(() -> {
-                    UserProgress newProg = new UserProgress();
-                    newProg.setUserId(request.userId());
-                    newProg.setCourseId(request.courseId());
-                    newProg.setNew(true);
-                    return newProg;
+                    UserProgress p = new UserProgress();
+                    p.setUserId(request.userId());
+                    p.setCourseId(request.courseId());
+                    return p;
                 });
 
         progress.setCompletionPercentage(request.completionPercentage());
         progress.setCorrectnessPercentage(request.correctnessPercentage());
         progress.setLastAccessed(LocalDateTime.now());
-        progress.setNew(false);
-        progressRepository.save(progress);
-        return progressMapper.toResponse(progress);
+
+        UserProgress saved = progressRepository.save(progress);
+        return progressMapper.toResponse(saved);
     }
 
     public UserProgressResponse getProgress(Long userId, Long courseId) {

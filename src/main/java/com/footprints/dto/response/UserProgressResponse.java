@@ -5,6 +5,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Прогресс пользователя")
 public record UserProgressResponse(
+
+        @Schema(description = "userId", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
+        Long userId,
+
         @Schema(description = "ID курса", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
         Long courseId,
 

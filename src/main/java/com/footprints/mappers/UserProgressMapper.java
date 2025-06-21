@@ -9,14 +9,15 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = DateMapper.class)
 public interface UserProgressMapper {
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(source = "userId", target = "userId")
     @Mapping(source = "courseId", target = "courseId")
-    @Mapping(source = "request.completionPercentage", target = "completionPercentage")
-    @Mapping(source = "request.correctnessPercentage", target = "correctnessPercentage")
-    @Mapping(target = "lastAccessed", expression = "java(java.time.LocalDateTime.now())")
-    @Mapping(target = "new", constant = "true")
-    UserProgress toEntity(ProgressUpdateRequest request, Long userId, Long courseId);
+    @Mapping(source = "completionPercentage", target = "completionPercentage")
+    @Mapping(source = "correctnessPercentage", target = "correctnessPercentage")
+    @Mapping(target = "lastAccessed", ignore = true)
+    UserProgress toEntity(ProgressUpdateRequest request);
 
+    @Mapping(source = "userId", target = "userId")
     @Mapping(source = "courseId", target = "courseId")
     @Mapping(source = "completionPercentage", target = "completionPercentage")
     @Mapping(source = "correctnessPercentage", target = "correctnessPercentage")
