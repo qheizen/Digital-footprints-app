@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS lesson_sections CASCADE;
 DROP TABLE IF EXISTS lessons CASCADE;
 DROP TABLE IF EXISTS courses CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS roles CASCADE;
 
 DROP SEQUENCE IF EXISTS test_questions_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS practice_tasks_id_seq CASCADE;
@@ -20,10 +21,16 @@ DROP SEQUENCE IF EXISTS users_id_seq CASCADE;
 
 SET session_replication_role = DEFAULT;
 
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL
+);
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(50) NOT NULL UNIQUE,
     username VARCHAR(50) NOT NULL,
+    role_id INT NOT NULL REFERENCES roles(role_id),
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_login TIMESTAMP
@@ -134,3 +141,4 @@ COMMENT ON TABLE test_questions IS 'Тестовые вопросы';
 COMMENT ON TABLE user_progress IS 'Прогресс пользователей по курсам';
 COMMENT ON TABLE user_section_status IS 'Статус прохождения секций';
 COMMENT ON TABLE user_test_answers IS 'Ответы пользователей на тестовые вопросы';
+COMMENT ON TABLE roles IS 'Роли для обеспечения доступа';

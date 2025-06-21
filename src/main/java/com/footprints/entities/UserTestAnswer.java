@@ -1,7 +1,8 @@
 package com.footprints.entities;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -12,13 +13,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table("user_test_answers")
-public class UserTestAnswer {
+public class UserTestAnswer implements Persistable<UserTestAnswerId> {
 
-    @Id
     @Column("user_id")
     private Long userId;
 
-    @Id
     @Column("question_id")
     private Long questionId;
 
@@ -30,4 +29,22 @@ public class UserTestAnswer {
 
     @Column("answered_at")
     private LocalDateTime answeredAt;
+
+    @Transient
+    @Builder.Default
+    private boolean isNew = true;
+
+    @Override
+    public UserTestAnswerId getId() {
+        return new UserTestAnswerId(userId, questionId);
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean isNew) {
+        this.isNew = isNew;
+    }
 }

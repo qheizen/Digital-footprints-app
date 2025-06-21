@@ -1,6 +1,5 @@
 package com.footprints.entities;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.*;
 import org.springframework.data.relational.core.mapping.Column;
@@ -8,8 +7,8 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table("courses")
@@ -19,7 +18,6 @@ public class Course {
     @Column("id")
     private Long courseId;
 
-    @NotNull(message = "Title is required")
     @Column("title")
     private String title;
 
@@ -29,7 +27,6 @@ public class Course {
     @Column("key_word")
     private String keyWord;
 
-    @NotNull(message = "Difficulty level is required")
     @Column("difficulty_level")
     private Integer difficultyLevel;
 

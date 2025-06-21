@@ -28,11 +28,10 @@ public class SecurityConfig {
                                             JwtAuthenticationFilter authenticationFilter) throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers("/api/v1/auth/login").permitAll();
-                    authorize.requestMatchers("/swagger-ui/**").permitAll();
-                    authorize.requestMatchers("/v3/api-docs/**").permitAll();
-                    authorize.anyRequest().authenticated();
-                }).httpBasic(Customizer.withDefaults());
+            authorize.requestMatchers("/api/v1/auth/**").permitAll();
+            authorize.requestMatchers("/swagger-ui/**").permitAll();
+            authorize.anyRequest().permitAll();
+        }).httpBasic(Customizer.withDefaults());
 
         http.exceptionHandling(exception -> exception
                 .authenticationEntryPoint(authenticationEntryPoint));

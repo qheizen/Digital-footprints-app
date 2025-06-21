@@ -1,24 +1,26 @@
 package com.footprints.entities;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table("user_progress")
-public class UserProgress {
+public class UserProgress implements Persistable<UserProgressId> {
 
-    @Id
     @Column("user_id")
     private Long userId;
 
-    @Id
     @Column("course_id")
     private Long courseId;
 
@@ -30,4 +32,21 @@ public class UserProgress {
 
     @Column("last_accessed")
     private LocalDateTime lastAccessed;
+
+    @Transient
+    private boolean isNew = true;
+
+    @Override
+    public UserProgressId getId() {
+        return new UserProgressId(userId, courseId);
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean isNew) {
+        this.isNew = isNew;
+    }
 }
