@@ -20,7 +20,6 @@ public class SectionStatusService {
                     UserSectionStatus newStatus = new UserSectionStatus();
                     newStatus.setUserId(request.userId());
                     newStatus.setSectionId(request.sectionId());
-                    newStatus.setNew(true);
                     return newStatus;
                 });
 

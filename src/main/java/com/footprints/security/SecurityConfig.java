@@ -1,5 +1,6 @@
 package com.footprints.security;
 
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,6 +30,14 @@ public class SecurityConfig {
     }
 
     @Bean
+    public GroupedOpenApi usersApi() {
+        return GroupedOpenApi.builder()
+                .group("Users")
+                .pathsToMatch("/api/v1/users/**")
+                .build();
+    }
+
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http,
                                             JwtAuthenticationEntryPoint authenticationEntryPoint,
                                             JwtAuthenticationFilter authenticationFilter) throws Exception {
@@ -36,11 +45,13 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers("/api/v1/auth/**").permitAll();
-                    authorize.requestMatchers("/swagger-ui/**").permitAll();
-                    authorize.anyRequest().permitAll();
-                })
+                .authorizeHttpRequests(authorize -> authorize
+                        // публичные endpoints
+                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        .anyRequest().permitAll()
+                )
                 .httpBasic(Customizer.withDefaults());
 
         http.exceptionHandling(exception -> exception
