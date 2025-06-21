@@ -1,32 +1,32 @@
 package com.footprints.controllers;
 
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import com.footprints.dto.request.UserLoginRequest;
 import com.footprints.dto.request.UserRegisterRequest;
+import com.footprints.dto.response.ApiResponse;
 import com.footprints.dto.response.JwtAuthResponse;
 import com.footprints.services.AuthService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
+
     private final AuthService authService;
 
-    @Operation(summary = "Вход в систему")
+    @Operation(summary = "Вход в систему (логин)")
     @PostMapping("/login")
-    public JwtAuthResponse login(@RequestBody @Valid UserLoginRequest request) {
-        return authService.login(request);
+    public ApiResponse<JwtAuthResponse> login(@RequestBody UserLoginRequest request) {
+        JwtAuthResponse token = authService.login(request);
+        return new ApiResponse<>("success", 200, "Вход выполнен успешно", token);
     }
 
-    @Operation(summary = "Регистрация пользователя")
+    @Operation(summary = "Регистрация нового пользователя")
     @PostMapping("/register")
-    public JwtAuthResponse register(@RequestBody @Valid UserRegisterRequest request) {
-        return authService.register(request);
+    public ApiResponse<JwtAuthResponse> register(@RequestBody UserRegisterRequest request) {
+        JwtAuthResponse token = authService.register(request);
+        return new ApiResponse<>("success", 200, "Пользователь зарегистрирован", token);
     }
 }

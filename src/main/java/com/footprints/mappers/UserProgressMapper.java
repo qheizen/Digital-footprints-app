@@ -14,6 +14,7 @@ public interface UserProgressMapper {
     @Mapping(source = "request.completionPercentage", target = "completionPercentage")
     @Mapping(source = "request.correctnessPercentage", target = "correctnessPercentage")
     @Mapping(target = "lastAccessed", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "new", constant = "true")
     UserProgress toEntity(ProgressUpdateRequest request, Long userId, Long courseId);
 
     @Mapping(source = "courseId", target = "courseId")

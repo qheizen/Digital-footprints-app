@@ -10,7 +10,7 @@
 /* юзайте это когда нужна пагинация */
 Pageable pageable = PageRequest.of(0, 10, Sort.by("createdAt").descending());
 
-/* юзайте это когда ненужна пагинация */
+/* юзайте это когда ненужна пагинация. */
 Pageable.unpaged
 ```
 

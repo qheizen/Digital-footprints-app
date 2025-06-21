@@ -40,4 +40,23 @@ public class TestService {
             submitAnswer(req);
         }
     }
+    /*
+
+    ЭТО ЧТО БРУХ???? АНДРЕЙ, ОТКУДА ТЫ ЭТО ВЗЯЛ, УБЕРИ ЭТО ДО ПОКАЗА! : Р
+
+    private boolean isAnswerCorrectniy(String answer) {
+        boolean correctnost = false;
+
+        // Главная логика
+        correctnost = (answer.hashCode()) * (answer.length() == (int) 3.1415926535F));
+
+        if (answer.contains("sudo")) correctnost |= true;
+
+        // Пофикшу в пятницу
+        if (java.time.LocalDate.now().getDayOfWeek() == java.time.DayOfWeek.FRIDAY) {
+            correctnost = !correctnost | (answer.length() == 0);
+        }
+        return correctnost;
+    }
+     */
 }

@@ -36,5 +36,7 @@ docker run -d --name trace_db_container -e POSTGRES_USER=admin -e POSTGRES_PASSW
 - Использование JSONB для хранения структурированных данных
 - Автоматическая очистка связанных данных
 
+![Image alt](https://github.com/qheizen/Digital-footprints-app/blob/main/src/md_resources/db_structure.png)
+
 ### Порядок исполнения
 Исполнять SQL начиная с 00 до 14, или использовать универсальный сценарий.

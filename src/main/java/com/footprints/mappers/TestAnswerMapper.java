@@ -13,5 +13,6 @@ public interface TestAnswerMapper {
     @Mapping(source = "request.answer", target = "answer")
     @Mapping(target = "isCorrect", ignore = true)
     @Mapping(target = "answeredAt", ignore = true)
+    @Mapping(target = "isNew", constant = "true") // Add this line
     UserTestAnswer toEntity(TestAnswerRequest request, Long userId);
 }
