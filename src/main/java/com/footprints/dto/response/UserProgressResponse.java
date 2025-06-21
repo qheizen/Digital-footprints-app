@@ -16,4 +16,5 @@ public record UserProgressResponse(
 
         @Schema(description = "Дата последнего доступа", example = "2023-03-20T14:30:00")
         String lastAccessed
-) {}
+) {
+}

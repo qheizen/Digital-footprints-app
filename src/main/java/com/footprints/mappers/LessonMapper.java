@@ -13,7 +13,6 @@ public interface LessonMapper {
     @Mapping(target = "lessonId", ignore = true)
     Lesson toEntity(LessonRequest request);
 
-    // Fixed: Use "entity.lessonId" as source instead of "lessonId"
     @Mapping(source = "entity.lessonId", target = "id")
     @Mapping(source = "sectionCount", target = "sectionCount")
     LessonResponse toResponse(Lesson entity, Integer sectionCount);

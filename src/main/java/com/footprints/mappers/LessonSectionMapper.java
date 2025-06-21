@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface LessonSectionMapper {
 
-    @Mapping(target = "sectionId", ignore = true) // игнорируем PK, его задаст БД
+    @Mapping(target = "sectionId", ignore = true)
     LessonSection toEntity(LessonSectionRequest request);
 }

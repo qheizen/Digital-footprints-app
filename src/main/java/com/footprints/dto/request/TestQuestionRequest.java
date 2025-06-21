@@ -11,4 +11,5 @@ public record TestQuestionRequest(
         @NotNull JsonNode options,
         @NotBlank String correctAnswer,
         @NotNull @Positive Integer orderIndex
-) {}
+) {
+}

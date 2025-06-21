@@ -8,5 +8,6 @@ public record LessonRequest(
         @NotNull Long courseId,
         @NotBlank String title,
         @NotNull @Positive Integer orderIndex
-) {}
+) {
+}
 

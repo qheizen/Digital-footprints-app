@@ -11,7 +11,7 @@ public interface PracticeTaskMapper {
 
     @Mapping(target = "taskId", ignore = true)
     @Mapping(source = "request.orderIndex", target = "orderIndex")
-    @Mapping(source = "sectionId", target = "sectionId") // добавлен маппинг id секции
+    @Mapping(source = "sectionId", target = "sectionId")
     PracticeTask toEntity(PracticeTaskRequest request, Long sectionId);
 
     PracticeTaskResponse toResponse(PracticeTask entity);

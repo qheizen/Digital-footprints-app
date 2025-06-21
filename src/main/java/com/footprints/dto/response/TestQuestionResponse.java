@@ -17,4 +17,5 @@ public record TestQuestionResponse(
 
         @Schema(description = "Правильный ответ", example = "Перегрузка методов")
         String correctAnswer
-) {}
+) {
+}

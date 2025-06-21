@@ -17,7 +17,7 @@ public interface CourseMapper {
     @Mapping(source = "courseId", target = "id")
     @Mapping(source = "title", target = "title")
     @Mapping(source = "description", target = "description")
-    @Mapping(source = "keyWord", target = "keyWord") // Добавлен маппинг ключевого слова
+    @Mapping(source = "keyWord", target = "keyWord")
     @Mapping(source = "difficultyLevel", target = "difficultyLevel")
     @Mapping(source = "createdAt", target = "createdAt", qualifiedByName = "asString")
     CourseResponse toResponse(Course entity);

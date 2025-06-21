@@ -8,4 +8,5 @@ public record LessonSectionRequest(
         @NotNull Long lessonId,
         @NotBlank String sectionType,
         @NotNull @Positive Integer orderIndex
-) {}
+) {
+}

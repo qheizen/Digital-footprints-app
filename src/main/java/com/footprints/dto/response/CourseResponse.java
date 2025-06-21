@@ -21,4 +21,5 @@ public record CourseResponse(
 
         @Schema(description = "Дата создания", example = "2023-01-10T08:00:00")
         String createdAt
-) {}
+) {
+}

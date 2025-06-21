@@ -10,11 +10,11 @@ import org.mapstruct.Mapping;
 public interface TestQuestionMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(source = "request.question",      target = "question")
-    @Mapping(source = "request.options",       target = "options")
+    @Mapping(source = "request.question", target = "question")
+    @Mapping(source = "request.options", target = "options")
     @Mapping(source = "request.correctAnswer", target = "correctAnswer")
-    @Mapping(source = "request.orderIndex",    target = "orderIndex")
-    @Mapping(source = "sectionId",             target = "sectionId")
+    @Mapping(source = "request.orderIndex", target = "orderIndex")
+    @Mapping(source = "sectionId", target = "sectionId")
     TestQuestion toEntity(TestQuestionRequest request, Long sectionId);
 
     TestQuestionResponse toResponse(TestQuestion entity);

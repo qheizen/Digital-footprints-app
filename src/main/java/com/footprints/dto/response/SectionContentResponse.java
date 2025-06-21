@@ -22,4 +22,5 @@ public record SectionContentResponse(
 
         @Schema(description = "Тестовые вопросы")
         List<TestQuestionResponse> testQuestions
-) {}
+) {
+}

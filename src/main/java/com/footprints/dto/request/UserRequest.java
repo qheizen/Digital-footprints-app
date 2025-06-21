@@ -21,4 +21,5 @@ public record UserRequest(
         @Schema(description = "Пароль пользователя")
         @NotBlank @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", message = "Weak password")
         String userPassword
-) { }
+) {
+}

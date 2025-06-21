@@ -9,4 +9,5 @@ public record ProgressUpdateRequest(
         @NotNull Long courseId,
         @NotNull @Min(0) @Max(100) Integer completionPercentage,
         @NotNull @Min(0) @Max(100) Integer correctnessPercentage
-) {}
+) {
+}

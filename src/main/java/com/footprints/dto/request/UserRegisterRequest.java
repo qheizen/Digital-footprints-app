@@ -18,4 +18,5 @@ public record UserRegisterRequest(
         @Schema(description = "Ник пользователя", requiredMode = Schema.RequiredMode.REQUIRED)
         @NotBlank(message = Messages.USERNAME_EMPTY)
         String username
-) {}
+) {
+}

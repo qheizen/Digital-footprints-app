@@ -4,6 +4,7 @@ import com.footprints.dto.request.UserLoginRequest;
 import com.footprints.dto.request.UserRegisterRequest;
 import com.footprints.dto.response.JwtAuthResponse;
 import com.footprints.entities.User;
+import com.footprints.exception.EmailAlreadyExistsException;
 import com.footprints.repositories.UserRepository;
 import com.footprints.resources.Messages;
 import com.footprints.security.JwtTokenProvider;
@@ -14,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 
 @Service
@@ -38,7 +41,7 @@ public class AuthService {
 
     public JwtAuthResponse register(UserRegisterRequest request) {
         if (userRepository.existsByUserEmail(request.email())) {
-            throw new RuntimeException(Messages.EMAIL_EXISTS);
+            throw new EmailAlreadyExistsException(Messages.EMAIL_EXISTS);
         }
         String encodedPassword = passwordEncoder.encode(request.password());
 
@@ -46,6 +49,7 @@ public class AuthService {
         user.setUserEmail(request.email());
         user.setUserPassword(encodedPassword);
         user.setUsername(request.username());
+        user.setCreatedAt(LocalDateTime.now());
         user.setRoleId(DEFAULT_ROLE_ID);
         userRepository.save(user);
 

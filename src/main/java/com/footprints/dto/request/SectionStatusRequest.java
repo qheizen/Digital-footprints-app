@@ -6,4 +6,5 @@ public record SectionStatusRequest(
         @NotNull Long userId,
         @NotNull Long sectionId,
         @NotNull Boolean isCompleted
-) {}
+) {
+}
