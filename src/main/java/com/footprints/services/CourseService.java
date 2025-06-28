@@ -16,11 +16,6 @@ import java.util.stream.StreamSupport;
 @RequiredArgsConstructor
 public class CourseService {
 
-    /*
-
-    Андрей, убери свои поганые руки от сервисов, они после тебя не работают! : Ф
-
-     */
     private final CourseRepository courseRepository;
     private final CourseMapper courseMapper;
 

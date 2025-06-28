@@ -1,0 +1,10 @@
+create index idx_lessons_course on lessons(l_course_id);
+create index idx_section_lesson on lesson_sections(ls_lesson_id);
+create index idx_status_user on user_status(us_user_id);
+create index idx_user_role on users(u_role);
+create index idx_status_course on user_course_status(ucs_course_id);
+create index idx_practice_section on practice_content(p_section_id);
+create index idx_test_section on test_content(q_section_id);
+create index idx_user_sections on user_section_status(uss_user_id);
+CREATE INDEX idx_lessons_order ON lessons(l_course_id, l_order_index);
+CREATE INDEX idx_sections_order ON lesson_sections(ls_lesson_id, ls_order_index);

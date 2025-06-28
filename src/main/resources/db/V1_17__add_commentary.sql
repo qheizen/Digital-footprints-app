@@ -1,0 +1,13 @@
+comment on table user_roles is 'Роли для обеспечения доступа';
+comment on table users is 'Пользователи системы';
+comment on table user_status is 'Профиль и статистика пользователя';
+comment on table keywords is 'Ключевые слова для курсов';
+comment on table courses is 'Обучающие курсы';
+comment on table user_course_status is 'Прогресс изучения курсов';
+comment on table lessons is 'Уроки в составе курсов';
+comment on table lesson_sections is 'Секции уроков (лекция/практика/тест)';
+comment on table user_section_status is 'Статус изучаемых секций';
+comment on table lecture_content is 'Контент лекционных разделов';
+comment on table practice_content is 'Контент практических разделов';
+comment on table test_options is 'Ответы на тесты';
+comment on table test_content is 'Контент тестовых разделов';
