@@ -1,9 +1,9 @@
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(50) NOT NULL UNIQUE,
-    username VARCHAR(50) NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    role_id INT NOT NULL REFERENCES roles(role_id),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    last_login TIMESTAMP
+create table users (
+	u_id bigserial primary key,
+	u_nickname varchar(32) not null,
+	u_password varchar(128) not null,
+	u_email varchar(64) not null unique,
+	u_role serial not null references user_roles(r_id),
+	u_created_at timestamp not null default CURRENT_TIMESTAMP,
+	u_last_login timestamp not null default CURRENT_TIMESTAMP
 );

@@ -1,4 +1,5 @@
-CREATE TABLE roles (
-    role_id SERIAL PRIMARY KEY,
-    role_name VARCHAR(50) UNIQUE NOT NULL
+create table user_roles (
+	r_id serial primary key,
+	r_name varchar(32) unique not null,
+	r_permissions bit(4) not null
 );

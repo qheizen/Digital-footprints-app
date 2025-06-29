@@ -4,7 +4,6 @@ import com.footprints.entities.Lesson;
 import com.footprints.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
@@ -13,9 +12,9 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>, PagingAndSortingRepository<User, Long> {
 
-    Optional<User> findByUserEmail(String userEmail);
+    Optional<User> findByUserEmail(String email);
 
-    boolean existsByUserEmail(String userEmail);
+    boolean existsByUserEmail(String email);
 
     <S extends User> S save(S entity);
 }

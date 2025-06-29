@@ -23,5 +23,5 @@ springdoc:
     path: /swagger-ui
 
 jwt:
-  secret: 'andreyWWediNormalmiyTokenPG'
+  secret: 'z4kozt0e4KL0hNY6h0eJdqvf951YziBWTJ22HKRHm/M='
   expiration-milliseconds: 604800000

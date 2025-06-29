@@ -1,7 +1,7 @@
+// src/main/java/com/footprints/repositories/UserProgressRepository.java
 package com.footprints.repositories;
 
 import com.footprints.entities.UserProgress;
-import com.footprints.entities.UserProgressId;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserProgressRepository extends CrudRepository<UserProgress, UserProgressId> {
+public interface UserProgressRepository extends CrudRepository<UserProgress, Long> {
 
     Optional<UserProgress> findByUserIdAndCourseId(Long userId, Long courseId);
 

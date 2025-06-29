@@ -32,7 +32,7 @@ public class User {
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column("updated_at")
+    @Column("last_login")
     private LocalDateTime updatedAt;
 
     @Column("role_id")
