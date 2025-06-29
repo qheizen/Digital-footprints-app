@@ -4,7 +4,7 @@
 
 ### Структура базы данных
 
-![Image alt](https://github.com/qheizen/Digital-footprints-app/blob/main/src/md_resources/db_structure.png)
+![Image alt](https://github.com/qheizen/Digital-footprints-app/blob/data_base_refactore/src/md_resources/db_structure.png)
 
 ### Развёртывание с помощью docker
 Docker-compose:
