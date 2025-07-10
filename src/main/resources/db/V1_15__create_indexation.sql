@@ -8,3 +8,5 @@ create index idx_test_section on test_content(q_section_id);
 create index idx_user_sections on user_section_status(uss_user_id);
 CREATE INDEX idx_lessons_order ON lessons(l_course_id, l_order_index);
 CREATE INDEX idx_sections_order ON lesson_sections(ls_lesson_id, ls_order_index);
+CREATE INDEX idx_users_email ON users(u_email);
+CREATE INDEX idx_users_username ON users(u_nickname);

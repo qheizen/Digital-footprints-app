@@ -1,10 +1,10 @@
 package com.footprints.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -13,23 +13,24 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("user_section_status")
-public class UserSectionStatus {
+@Table("user_status")
+public class UserStatus {
 
     @Id
-    @Column("uss_id")
+    @Column("us_id")
     private Long id;
 
-    @Column("uss_user_id")
-    private Long userId;
+    @Column("us_user_id")
+    private Long user_id;
 
-    @Column("uss_section_id")
-    private Long sectionId;
+    @Column("us_current_skill")
+    private Short current_skill;
 
-    @Column("uss_id_completed")
-    private boolean isCompleted;
+    @Column("us_lesson_strike")
+    private Integer lesson_strike;
 
-    @Column("uss_completed_at")
-    private LocalDateTime completedAt;
+    @LastModifiedDate
+    @Column("updated_at")
+    private LocalDateTime updatedAt;
 
 }
