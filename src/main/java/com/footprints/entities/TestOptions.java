@@ -1,21 +1,24 @@
 package com.footprints.entities;
 
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("roles")
-public class Role {
+@Table("test_options")
+public class TestOptions {
 
     @Id
-    @Column("role_id")
-    private Integer id;
+    @Column("qo_id")
+    private Long id;
 
-    @Column("role_name")
-    private String name;
+    @Column("qo_answer")
+    private String answer;
+
 }

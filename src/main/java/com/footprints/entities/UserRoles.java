@@ -1,5 +1,6 @@
 package com.footprints.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,14 +11,17 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("lecture_content")
-public class LectureContent {
+@Table("user_roles")
+public class UserRoles {
 
     @Id
-    @Column("lc_section_id")
-    private Long sectionId;
+    @Column("r_id")
+    private Long id;
 
-    @Column("lc_lecture_content")
-    private String lectureContent;
+    @Column("r_name")
+    private String name;
+
+    @Column("r_permissions")
+    private Byte[] permissions;
 
 }

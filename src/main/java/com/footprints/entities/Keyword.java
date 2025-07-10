@@ -10,14 +10,14 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("lecture_content")
-public class LectureContent {
+@Table("keywords")
+public class Keyword {
 
     @Id
-    @Column("lc_section_id")
-    private Long sectionId;
+    @Column("k_id")
+    private Long id;
 
-    @Column("lc_lecture_content")
-    private String lectureContent;
+    @Column("k_word")
+    private String word;
 
 }

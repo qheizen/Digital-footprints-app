@@ -5,5 +5,6 @@ create table courses (
 	c_keyword bigserial references keywords(k_id),
 	c_difficulty_level numeric(4) not null default 0 check (c_difficulty_level between 1 and 32),
 	created_at timestamp not null default CURRENT_TIMESTAMP,
-	updated_at timestamp not null default CURRENT_TIMESTAMP
+	updated_at timestamp not null default CURRENT_TIMESTAMP,
+	с_version INTEGER NOT NULL DEFAULT 0
 );

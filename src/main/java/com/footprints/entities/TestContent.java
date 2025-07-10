@@ -10,14 +10,20 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("lecture_content")
-public class LectureContent {
+@Table("test_content")
+public class TestContent {
 
     @Id
-    @Column("lc_section_id")
+    @Column("q_id")
+    private Long id;
+
+    @Column("q_section_id")
     private Long sectionId;
 
-    @Column("lc_lecture_content")
-    private String lectureContent;
+    @Column("q_question_description")
+    private String questionDescription;
+
+    @Column("q_correct_answer")
+    private Long correctAnswerId;
 
 }
