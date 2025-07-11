@@ -1,4 +1,5 @@
 create table keywords (
-	k_id bigserial primary key,
-	k_word varchar(32) not null unique
+	id bigserial primary key,
+	keyword varchar(32) not null unique,
+	created_at timestamp not null default CURRENT_TIMESTAMP
 );
