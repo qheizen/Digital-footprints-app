@@ -4,9 +4,12 @@ package com.footprints.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -15,13 +18,17 @@ import org.springframework.data.relational.core.mapping.Table;
 public class UserRoles {
 
     @Id
-    @Column("r_id")
+    @Column("id")
     private Long id;
 
-    @Column("r_name")
+    @Column("name")
     private String name;
 
-    @Column("r_permissions")
+    @Column("permissions")
     private Byte[] permissions;
+
+    @CreatedDate
+    @Column("created_at")
+    private LocalDateTime createdAt;
 
 }

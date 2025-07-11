@@ -42,16 +42,16 @@ docker run -d --name trace_db_container -e POSTGRES_USER=admin -e POSTGRES_PASSW
 SELECT * 
 FROM user_course_status
 JOIN user_section_status ON ...
-WHERE ucs_user_id = {user_id};
+WHERE user_id = {user_id};
 ```
 #### Оптимизация запросов:
 При выборке последовательности уроков/секций применяйте:
 ```postgres-psql
 SELECT * 
 FROM lessons 
-WHERE l_course_id = {id}
-ORDER BY l_order_index;
--- Использует индекс idx_lessons_order
+WHERE course_id = {id}
+ORDER BY order_index;
+-- Использует индекс lessons_order
 ```
 ### Особенности базы данных
 - Иерархическая структура контента

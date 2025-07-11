@@ -15,16 +15,16 @@ import org.springframework.data.relational.core.mapping.Table;
 public class LessonSection {
 
     @Id
-    @Column("ls_id")
+    @Column("id")
     private Long id;
 
-    @Column("ls_lesson_id")
+    @Column("lesson_id")
     private Long lessonId;
 
-    @Column("ls_section_type")
+    @Column("section_type")
     private String sectionType;
 
-    @Column("ls_order_index")
+    @Column("order_index")
     private Integer orderIndex;
 
 }

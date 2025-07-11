@@ -17,19 +17,19 @@ import java.time.LocalDateTime;
 public class UserSectionStatus {
 
     @Id
-    @Column("uss_id")
+    @Column("id")
     private Long id;
 
-    @Column("uss_user_id")
+    @Column("user_id")
     private Long userId;
 
-    @Column("uss_section_id")
+    @Column("section_id")
     private Long sectionId;
 
-    @Column("uss_id_completed")
+    @Column("is_completed")
     private boolean isCompleted;
 
-    @Column("uss_completed_at")
+    @Column("completed_at")
     private LocalDateTime completedAt;
 
 }

@@ -17,17 +17,17 @@ import java.time.LocalDateTime;
 public class UserSessionLogs {
 
     @Id
-    @Column("l_id")
+    @Column("id")
     private Long Id;
 
-    @Column("l_user_id")
+    @Column("user_id")
     private Long userId;
 
-    @Column("l_session_log")
+    @Column("session_log")
     private String sessionLog;
 
     @CreatedDate
-    @Column("l_created_at")
+    @Column("created_at")
     private LocalDateTime createdAt;
 
 }
