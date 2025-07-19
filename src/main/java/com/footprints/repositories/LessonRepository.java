@@ -3,7 +3,6 @@ package com.footprints.repositories;
 import com.footprints.entities.Lesson;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
-
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +13,8 @@ public interface LessonRepository extends CrudRepository<Lesson, Long>, PagingAn
 
     List<Lesson> findByCourseId(Long courseId);
 
-    Optional<Lesson> findByCourseIdAndOrderIndex(Long courseId, Integer orderIndex);
+    Optional<Lesson> findByOrderIndex(Integer orderIndex);
+
+    boolean existsByTitle(String title);
+
 }

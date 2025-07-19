@@ -1,10 +1,11 @@
 package com.footprints.repositories;
 
-import com.footprints.entities.LectureContent;
+
+import com.footprints.entities.TestOptions;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LectureContentRepository extends CrudRepository<LectureContent, Long>, PagingAndSortingRepository<LectureContent, Long> {
+public interface TestOptionsRepository extends CrudRepository<TestOptions, Long>, PagingAndSortingRepository<TestOptions, Long> {
 }
