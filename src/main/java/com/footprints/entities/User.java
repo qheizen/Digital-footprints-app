@@ -2,7 +2,6 @@ package com.footprints.entities;
 
 import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,8 +9,8 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 
 @Data
 @NoArgsConstructor
