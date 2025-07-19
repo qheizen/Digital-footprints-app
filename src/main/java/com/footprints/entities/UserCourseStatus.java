@@ -8,30 +8,31 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("user_session_logs")
+@Table("user_course_status")
 public class UserCourseStatus {
 
     @Id
-    @Column("ucs_id")
+    @Column("id")
     private Long id;
 
-    @Column("ucs_user_id")
+    @Column("user_id")
     private Long userId;
 
-    @Column("ucs_course_id")
+    @Column("course_id")
     private Long courseId;
 
-    @Column("ucs_completion_percentage")
+    @Column("completion_percentage")
     private Integer completionPercentage;
 
-    @Column("ucs_correctness_percentage")
+    @Column("correctness_percentage")
     private Integer correctnessPercentage;
 
     @Version
-    @Column("c_version")
+    @Column("version")
     private Integer version;
 
 }

@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,16 +15,16 @@ import org.springframework.data.relational.core.mapping.Table;
 public class PracticeContent {
 
     @Id
-    @Column("p_id")
+    @Column("id")
     private Long id;
 
-    @Column("p_section_id")
+    @Column("section_id")
     private Long sectionId;
 
-    @Column("p_task_description")
+    @Column("task_description")
     private String taskDescription;
 
-    @Column("p_order_index")
+    @Column("order_index")
     private Integer orderIndex;
 
 

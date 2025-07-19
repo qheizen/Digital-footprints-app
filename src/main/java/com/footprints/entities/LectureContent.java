@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,10 +15,10 @@ import org.springframework.data.relational.core.mapping.Table;
 public class LectureContent {
 
     @Id
-    @Column("lc_section_id")
+    @Column("section_id")
     private Long sectionId;
 
-    @Column("lc_lecture_content")
+    @Column("lecture_content")
     private String lectureContent;
 
 }

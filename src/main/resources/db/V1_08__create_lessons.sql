@@ -1,8 +1,9 @@
-CREATE TABLE test_questions (
-    id SERIAL PRIMARY KEY,
-    section_id INTEGER NOT NULL REFERENCES lesson_sections(id) ON DELETE CASCADE,
-    question TEXT NOT NULL,
-    options JSONB NOT NULL,
-    correct_answer CHAR(1) NOT NULL,
-    order_index SMALLINT NOT NULL
+create table lessons (
+	id bigserial primary key,
+	course_id bigserial not null references courses(id) on delete cascade,
+	title varchar(128) not null default 'no title here',
+	description text not null default 'no description available',
+	order_index integer,
+	created_at timestamp not null default CURRENT_TIMESTAMP,
+	updated_at timestamp not null default CURRENT_TIMESTAMP
 );

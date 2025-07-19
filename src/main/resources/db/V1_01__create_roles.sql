@@ -1,5 +1,6 @@
 create table user_roles (
-	r_id serial primary key,
-	r_name varchar(32) unique not null,
-	r_permissions bit(4) not null
+	id serial primary key,
+	name varchar(32) unique not null,
+	permissions bit(4) not null,
+	created_at timestamp not null default CURRENT_TIMESTAMP
 );

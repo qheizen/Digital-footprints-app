@@ -1,6 +1,5 @@
 package com.footprints.repositories;
 
-import com.footprints.entities.Lesson;
 import com.footprints.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -16,5 +15,4 @@ public interface UserRepository extends CrudRepository<User, Long>, PagingAndSor
 
     boolean existsByUserEmail(String email);
 
-    <S extends User> S save(S entity);
 }

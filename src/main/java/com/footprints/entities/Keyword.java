@@ -3,9 +3,13 @@ package com.footprints.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.time.LocalDateTime;
+
 
 @Data
 @NoArgsConstructor
@@ -14,10 +18,14 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Keyword {
 
     @Id
-    @Column("k_id")
+    @Column("id")
     private Long id;
 
-    @Column("k_word")
+    @Column("word")
     private String word;
+
+    @CreatedDate
+    @Column("created_at")
+    private LocalDateTime createdAt;
 
 }

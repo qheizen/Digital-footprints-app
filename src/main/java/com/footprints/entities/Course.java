@@ -12,26 +12,27 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table("courses")
-public class Courses {
+public class Course {
 
     @Id
-    @Column("c_id")
+    @Column("id")
     private Long Id;
 
-    @Column("c_title")
-    private String title;
-
-    @Column("c_description")
-    private String description;
-
-    @Column("c_keyword")
+    @Column("keyword_id")
     private Long keywordId;
 
-    @Column("c_difficulty_level")
+    @Column("title")
+    private String title;
+
+    @Column("description")
+    private String description;
+
+    @Column("difficulty_level")
     private Integer difficultyLevel;
 
     @CreatedDate
@@ -43,7 +44,6 @@ public class Courses {
     private LocalDateTime updatedAt;
 
     @Version
-    @Column("c_version")
+    @Column("version")
     private Integer version;
-
 }

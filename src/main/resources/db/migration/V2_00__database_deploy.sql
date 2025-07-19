@@ -18,121 +18,132 @@ drop table if exists user_session_logs cascade;
 set session_replication_role = default;
 
 create table user_roles (
-	r_id serial primary key,
-	r_name varchar(32) unique not null,
-	r_permissions bit(4) not null
+	id serial primary key,
+	name varchar(32) unique not null,
+	permissions bit(4) not null,
+	created_at timestamp not null default CURRENT_TIMESTAMP
 );
 
 create table users (
-	u_id bigserial primary key,
-	u_nickname varchar(32) not null,
-	u_password varchar(128) not null,
-	u_email varchar(64) not null unique,
-	u_role serial not null references user_roles(r_id),
-	u_created_at timestamp not null default CURRENT_TIMESTAMP,
-	u_last_login timestamp not null default CURRENT_TIMESTAMP
+	id bigserial primary key,
+	username varchar(32) not null,
+	password varchar(128) not null,
+	email varchar(64) not null unique,
+	role_id serial not null references user_roles(id),
+	created_at timestamp not null default CURRENT_TIMESTAMP,
+	updated_at timestamp not null default CURRENT_TIMESTAMP,
+	last_login timestamp not null default CURRENT_TIMESTAMP,
+	version INTEGER NOT NULL DEFAULT 0
 );
 
 create table user_session_logs (
-	l_id bigserial primary key,
-	l_user_id bigserial not null references users(u_id),
-	l_session_log text,
-	l_created_at timestamp not null default CURRENT_TIMESTAMP
+	id bigserial primary key,
+	user_id bigserial not null references users(id),
+	session_log text not null,
+	created_at timestamp not null default CURRENT_TIMESTAMP
 );
 
 create table user_status (
-	us_id bigserial primary key,
-	us_user_id bigserial not null references users(u_id) on delete cascade,
-	us_current_skill numeric(4) not null default 0,
-	us_lesson_strike smallint not null default 0,
+	id bigserial primary key,
+	user_id bigserial not null references users(id) on delete cascade,
+	current_skill numeric(4) not null default 0,
+	lesson_strike smallint not null default 0,
 	updated_at timestamp not null default CURRENT_TIMESTAMP
 );
 
 create table keywords (
-	k_id bigserial primary key,
-	k_word varchar(32) not null unique
+	id bigserial primary key,
+	keyword varchar(32) not null unique,
+	created_at timestamp not null default CURRENT_TIMESTAMP
 );
 
 create table courses (
-	c_id bigserial primary key,
-	c_title varchar(64) not null unique,
-	c_description text not null default 'no description available',
-	c_keyword bigserial references keywords(k_id),
-	c_difficulty_level numeric(4) not null default 0 check (c_difficulty_level between 1 and 32),
+	id bigserial primary key,
+	keyword_id bigserial references keywords(id),
+	title varchar(64) not null unique,
+	description text not null default 'no description available',
+	difficulty_level numeric(4) not null default 0 check (difficulty_level between 1 and 32),
 	created_at timestamp not null default CURRENT_TIMESTAMP,
-	updated_at timestamp not null default CURRENT_TIMESTAMP
+	updated_at timestamp not null default CURRENT_TIMESTAMP,
+	version INTEGER NOT NULL DEFAULT 0
 );
 
 create table user_course_status (
-	ucs_id bigserial primary key,
-	ucs_user_id bigserial not null references users(u_id),
-	ucs_course_id bigserial not null references courses(c_id),
-	ucs_completion_percentage integer not null default 0 check (ucs_completion_percentage between 0 and 100),
-	ucs_correctness_percentage integer not null default 0 check (ucs_correctness_percentage between 0 and 100),
-	constraint unique_user_course unique (ucs_user_id, ucs_course_id)
+	id bigserial primary key,
+	user_id bigserial not null references users(id),
+	course_id bigserial not null references courses(id),
+	completion_percentage integer not null default 0 check (completion_percentage between 0 and 100),
+	correctness_percentage integer not null default 0 check (correctness_percentage between 0 and 100),
+	version INTEGER NOT NULL DEFAULT 0,
+
+	constraint unique_user_course unique (user_id, course_id)
 );
 
 create table lessons (
-	l_id bigserial primary key,
-	l_course_id bigserial not null references courses(c_id) on delete cascade,
-	l_title varchar(128) not null default 'no title here',
-	l_description text not null default 'no description available',
-	l_order_index integer,
+	id bigserial primary key,
+	course_id bigserial not null references courses(id) on delete cascade,
+	title varchar(128) not null default 'no title here',
+	description text not null default 'no description available',
+	order_index integer,
 	created_at timestamp not null default CURRENT_TIMESTAMP,
 	updated_at timestamp not null default CURRENT_TIMESTAMP
 );
 
 create table lesson_sections (
-	ls_id bigserial primary key,
-	ls_lesson_id bigserial not null references lessons(l_id) on delete cascade on update cascade,
-	ls_section_type varchar(25) not null check (ls_section_type in ('practice', 'lecture', 'test', 'something')),
-	ls_order_index integer
+	id bigserial primary key,
+	lesson_id bigserial not null references lessons(id) on delete cascade on update cascade,
+	section_type varchar(25) not null check (section_type in ('practice', 'lecture', 'test', 'something')),
+	order_index integer
 );
 
 create table user_section_status (
-	uss_id bigserial primary key,
-	uss_user_id bigserial not null references users(u_id) on delete cascade,
-	uss_section_id bigserial not null references lesson_sections(ls_id) on delete cascade,
-	uss_is_completed boolean not null default false,
-	uss_completed_at timestamp,
-	constraint unique_user_section unique(uss_user_id, uss_section_id)
+	id bigserial primary key,
+	user_id bigserial not null references users(id) on delete cascade,
+	section_id bigserial not null references lesson_sections(id) on delete cascade,
+	is_completed boolean not null default false,
+	completed_at timestamp,
+
+	constraint unique_user_section unique(user_id, section_id)
 );
 
 create table lecture_content (
-	lc_section_id bigserial primary key references lesson_sections(ls_id) on delete cascade,
-	lc_lecture_content text
+	section_id bigserial primary key references lesson_sections(id) on delete cascade,
+	lecture_content text
 );
 
 create table practice_content (
-	p_id bigserial primary key,
-	p_section_id bigserial not null references lesson_sections(ls_id) on delete cascade,
-	p_task_description text not null default 'no description available',
-	p_answer_description text not null default 'no description available',
-	p_order_index integer
+	id bigserial primary key,
+	section_id bigserial not null references lesson_sections(id) on delete cascade,
+	task_description text not null default 'no description available',
+	answer_description text not null default 'no description available',
+	order_index integer
 );
 
+
 create table test_options (
-	qo_id bigserial primary key,
-	qo_answer varchar(64) not null
+	id bigserial primary key,
+	answer varchar(64) not null
 );
 
 create table test_content (
-	q_id bigserial primary key,
-	q_section_id bigserial not null references lesson_sections(ls_id) on delete cascade,
-	q_question_description text not null default 'no description available',
-	q_correct_answer bigserial references test_options(qo_id) on delete cascade
+	id bigserial primary key,
+	section_id bigserial not null references lesson_sections(id) on delete cascade,
+	question_description text not null default 'no description available',
+	correct_answer_id bigserial references test_options(id) on delete cascade
 );
 
-create index idx_lessons_course on lessons(l_course_id);
-create index idx_section_lesson on lesson_sections(ls_lesson_id);
-create index idx_status_user on user_status(us_user_id);
-create index idx_user_role on users(u_role);
-create index idx_status_course on user_course_status(ucs_course_id);
-create index idx_practice_section on practice_content(p_section_id);
-create index idx_test_section on test_content(q_section_id);
-create index idx_user_sections on user_section_status(uss_user_id);
-CREATE INDEX idx_lessons_order ON lessons(l_course_id, l_order_index);
-CREATE INDEX idx_sections_order ON lesson_sections(ls_lesson_id, ls_order_index);
+create index idx_lessons_course on lessons(course_id);
+create index idx_section_lesson on lesson_sections(lesson_id);
+create index idx_status_user on user_status(user_id);
+create index idx_user_role on users(role_id);
+create index idx_status_course on user_course_status(course_id);
+create index idx_practice_section on practice_content(section_id);
+create index idx_test_section on test_content(section_id);
+create index idx_user_sections on user_section_status(user_id);
+CREATE INDEX idx_lessons_order ON lessons(course_id, order_index);
+CREATE INDEX idx_sections_order ON lesson_sections(lesson_id, order_index);
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_users_username ON users(username);
 
 create or replace function update_timestamp()
 returns trigger as $$
@@ -141,6 +152,10 @@ begin
 	return new;
 end;
 $$ language plpgsql;
+
+create trigger user_timestamp_update
+before update on users
+for each row execute function update_timestamp();
 
 create trigger lesson_timestamp_update
 before update on lessons 

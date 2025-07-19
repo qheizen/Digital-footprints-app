@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,16 +18,16 @@ import java.time.LocalDateTime;
 public class UserStatus {
 
     @Id
-    @Column("us_id")
+    @Column("id")
     private Long id;
 
-    @Column("us_user_id")
+    @Column("user_id")
     private Long user_id;
 
-    @Column("us_current_skill")
+    @Column("current_skill")
     private Short current_skill;
 
-    @Column("us_lesson_strike")
+    @Column("lesson_strike")
     private Integer lesson_strike;
 
     @LastModifiedDate

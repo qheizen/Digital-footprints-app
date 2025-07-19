@@ -1,6 +1,5 @@
 package com.footprints.repositories;
 
-import com.footprints.entities.Lesson;
 import com.footprints.entities.LessonSection;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -14,7 +13,6 @@ public interface LessonSectionRepository extends CrudRepository<LessonSection, L
 
     List<LessonSection> findByLessonId(Long lessonId);
 
-    List<LessonSection> findBySectionType(String sectionType);
+    Optional<LessonSection> findByOrderIndex(Integer orderIndex);
 
-    Optional<LessonSection> findByLessonIdAndOrderIndex(Long lessonId, Integer orderIndex);
 }

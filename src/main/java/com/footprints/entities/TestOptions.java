@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,10 +16,10 @@ import org.springframework.data.relational.core.mapping.Table;
 public class TestOptions {
 
     @Id
-    @Column("qo_id")
+    @Column("id")
     private Long id;
 
-    @Column("qo_answer")
+    @Column("answer")
     private String answer;
 
 }

@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,16 +15,16 @@ import org.springframework.data.relational.core.mapping.Table;
 public class TestContent {
 
     @Id
-    @Column("q_id")
+    @Column("id")
     private Long id;
 
-    @Column("q_section_id")
+    @Column("section_id")
     private Long sectionId;
 
-    @Column("q_question_description")
+    @Column("question_description")
     private String questionDescription;
 
-    @Column("q_correct_answer")
+    @Column("correct_answer")
     private Long correctAnswerId;
 
 }

@@ -6,6 +6,10 @@ begin
 end;
 $$ language plpgsql;
 
+create trigger user_timestamp_update
+before update on users
+for each row execute function update_timestamp();
+
 create trigger lesson_timestamp_update
 before update on lessons
 for each row execute function update_timestamp();
