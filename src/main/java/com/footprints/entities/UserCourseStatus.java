@@ -34,5 +34,4 @@ public class UserCourseStatus {
     @Version
     @Column("version")
     private Integer version;
-
 }

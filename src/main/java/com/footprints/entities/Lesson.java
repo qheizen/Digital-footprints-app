@@ -1,6 +1,5 @@
 package com.footprints.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,5 +41,4 @@ public class Lesson {
 
     @Column("order_index")
     private Integer orderIndex;
-
 }

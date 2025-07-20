@@ -1,6 +1,5 @@
 package com.footprints.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,5 +30,4 @@ public class UserRoles {
     @CreatedDate
     @Column("created_at")
     private LocalDateTime createdAt;
-
 }

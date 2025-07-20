@@ -11,5 +11,4 @@ import org.springframework.stereotype.Repository;
 public interface UserSessionLogsRepository extends CrudRepository<UserSessionLogs, Long>, PagingAndSortingRepository<UserSessionLogs, Long> {
 
     Page<UserSessionLogs> findByUserId(Long userId, Pageable pageable);
-
 }

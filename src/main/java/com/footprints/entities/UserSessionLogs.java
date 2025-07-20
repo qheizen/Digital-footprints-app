@@ -30,5 +30,4 @@ public class UserSessionLogs {
     @CreatedDate
     @Column("created_at")
     private LocalDateTime createdAt;
-
 }

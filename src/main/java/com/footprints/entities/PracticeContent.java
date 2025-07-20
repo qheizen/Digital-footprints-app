@@ -24,8 +24,9 @@ public class PracticeContent {
     @Column("task_description")
     private String taskDescription;
 
+    @Column("answer_description")
+    private String answerDescription;
+
     @Column("order_index")
     private Integer orderIndex;
-
-
 }
