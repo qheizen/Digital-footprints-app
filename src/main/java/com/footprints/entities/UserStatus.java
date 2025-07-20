@@ -22,16 +22,15 @@ public class UserStatus {
     private Long id;
 
     @Column("user_id")
-    private Long user_id;
+    private Long userId;
 
     @Column("current_skill")
-    private Short current_skill;
+    private Long currentSkill;
 
     @Column("lesson_strike")
-    private Integer lesson_strike;
+    private Integer lessonStrike;
 
     @LastModifiedDate
     @Column("updated_at")
     private LocalDateTime updatedAt;
-
 }

@@ -1,6 +1,5 @@
 package com.footprints.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +20,4 @@ public class TestOptions {
 
     @Column("answer")
     private String answer;
-
 }

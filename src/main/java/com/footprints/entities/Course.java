@@ -21,7 +21,7 @@ public class Course {
 
     @Id
     @Column("id")
-    private Long Id;
+    private Long id;
 
     @Column("keyword_id")
     private Long keywordId;

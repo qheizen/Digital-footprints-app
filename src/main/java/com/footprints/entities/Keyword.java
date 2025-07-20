@@ -21,11 +21,10 @@ public class Keyword {
     @Column("id")
     private Long id;
 
-    @Column("word")
-    private String word;
+    @Column("keyword")
+    private String keyWord;
 
     @CreatedDate
     @Column("created_at")
     private LocalDateTime createdAt;
-
 }

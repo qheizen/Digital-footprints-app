@@ -20,5 +20,4 @@ public class LectureContent {
 
     @Column("lecture_content")
     private String lectureContent;
-
 }

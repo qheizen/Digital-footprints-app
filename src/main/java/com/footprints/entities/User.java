@@ -33,7 +33,7 @@ public class User {
     private String email;
 
     @Column("role_id")
-    private Integer role;
+    private Integer roleId;
 
     @CreatedDate
     @Column("created_at")
@@ -49,5 +49,4 @@ public class User {
     @Version
     @Column("version")
     private Integer version;
-
 }

@@ -1,6 +1,5 @@
 package com.footprints.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,5 +31,4 @@ public class UserSectionStatus {
 
     @Column("completed_at")
     private LocalDateTime completedAt;
-
 }

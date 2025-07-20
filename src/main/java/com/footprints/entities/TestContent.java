@@ -26,5 +26,4 @@ public class TestContent {
 
     @Column("correct_answer")
     private Long correctAnswerId;
-
 }

@@ -26,5 +26,4 @@ public class LessonSection {
 
     @Column("order_index")
     private Integer orderIndex;
-
 }
