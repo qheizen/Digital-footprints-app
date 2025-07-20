@@ -1,111 +1,105 @@
-## Репозитории
-### Описание
-Во время разработки были добавлены интерфейсы обращения к базе данных. 
-Основные функции по работе с получением данных из файлов курса, обращение к юзер-таблицам и т.д.
-Описание актуально на момент Апрель 2025. С последнего коммита. 
-
-#### Пагинаторы
-Для методов, возвращающих Page<T>, используйте объект PageRequest
+# REPOSITORIES
+### CourseRepository
 ```java
-/* юзайте это когда нужна пагинация */
-Pageable pageable = PageRequest.of(0, 10, Sort.by("createdAt").descending());
-
-/* юзайте это когда ненужна пагинация. */
-Pageable.unpaged
+package com.footprints.repositories;
+public interface CourseRepository extends CrudRepository<Course, Long>, PagingAndSortingRepository<Course, Long>
 ```
+- **Page<Course> findByDifficultyLevel(Integer difficultyLevel, Pageable pageable)**
+- **Optional<Course> findByTitle(String title)** 
+- **Page<Course> findByKeywordContainingIgnoreCase(@Param("keyword") String keyword, Pageable pageable)**
 
-#### Optional
-Все методы поиска возвращают Optional. Обязательно проверяйте наличие значения
+### KeywordRepository
 ```java
-courseRepository.findByTitle("Math").ifPresent(course -> ...);
-```
-### CourseRepository 
-```java
-// Поиск по уровню сложности (пагинация)
-Page<Course> findWithDifficulty(String difficultLevel, Pageable pageable);
-
-// Поиск курсов с уровнем сложности НИЖЕ указанного
-Page<Course> findWithDifficultyBelow(@Param("maxLevel") int maxLevel, Pageable pageable);
-
-// Поиск курса по точному названию
-Optional<Course> findByTitle(String title);
+package com.footprints.repositories;
+public interface KeywordRepository extends CrudRepository<Keyword, Long>, PagingAndSortingRepository<Keyword, Long> 
 ```
 
 ### LectureContentRepository
 ```java
-// Поиск по курсу
-List<Lesson> findByCourseId(Long courseId);
-
-// Поиск нужного урока (по очереди)
-Optional<Lesson> findByCourseIdAndOrderIndex(Long courseId, Integer orderIndex);
+package com.footprints.repositories;
+public interface LectureContentRepository extends CrudRepository<LectureContent, Long> 
 ```
+
+### LessonRepository
+```java
+package com.footprints.repositories;
+public interface LessonRepository extends CrudRepository<Lesson, Long> 
+```
+- **List<Lesson> findByCourseId(Long courseId)**
+- **Optional<Lesson> findByOrderIndexAndCourseId(Integer orderIndex, Long courseId)**
+- **boolean existsByTitle(String title)**
 
 ### LessonSectionRepository
 ```java
-// Получение всех разделов урока
-List<LessonSection> findByLessonId(Long lessonId);
-
-// Фильтрация разделов по типу (лекция/практика/тест)
-List<LessonSection> findBySectionType(String sectionType);
-
-// Поиск раздела по порядковому индексу в уроке
-Optional<LessonSection> findByLessonIdAndOrderIndex(Long sectionId, Integer orderIndex);
+package com.footprints.repositories;
+public interface LessonSectionRepository extends CrudRepository<LessonSection, Long> 
 ```
+- **List<LessonSection> findByLessonId(Long lessonId)**
+- **Optional<LessonSection> findByOrderIndexAndLessonId(Integer orderIndex, Long lessonId)**
 
-### PracticeTaskRepository
+### PracticeContentRepository
 ```java
-// Получение всех заданий раздела
-List<PracticeTask> findBySectionId(Long sectionId);
-
-// Поиск задания по порядковому индексу в разделе
-Optional<PracticeTask> findBySectionIdAndOrderIndex(Long sectionId, Integer orderIndex);
+package com.footprints.repositories;
+public interface PracticeContentRepository extends CrudRepository<PracticeContent, Long> 
 ```
+- **List<PracticeContent> findBySectionId(Long sectionId)**
+- **Optional<PracticeContent> findByOrderIndexAndSectionId(Integer orderIndex, Long sectionId)** 
 
-### TestQuestionRepository
+### TestContentRepository
 ```java
-// Получение всех вопросов раздела
-List<TestQuestion> findBySectionId(Long sectionId);
-
-// Поиск вопроса по порядковому индексу в разделе
-Optional<TestQuestion> findBySectionIdAndOrderIndex(Long sectionId, Integer orderIndex);
+package com.footprints.repositories;
+public interface TestContentRepository extends CrudRepository<TestContent, Long>
 ```
+- **List<TestContent> findBySectionId(Long sectionId)**
 
-### UserProgressRepository
+### TestOptionsRepository
 ```java
-// Обновление процента завершения курса
-default void updateCompletionPercentage(Long userId, Long courseId, Integer completionPercentage) { ... }
-
-// Обновление процента правильных ответов
-default void updateCorrectnessPercentage(Long userId, Long courseId, Integer correctnessPercentage) { ... }
-
-// Основные операции:
-UserProgress save(UserProgress progress);
-Optional<UserProgress> findByUserIdAndCourseId(Long userId, Long courseId);
-List<UserProgress> findByUserId(Long userId);
-List<UserProgress> findByCourseId(Long courseId);
-void deleteByUserIdAndCourseId(Long userId, Long courseId);
+package com.footprints.repositories;
+public interface TestOptionsRepository extends CrudRepository<TestOptions, Long> 
 ```
+
+### UserCourseStatusRepository
+```java
+package com.footprints.repositories;
+public interface UserCourseStatusRepository extends CrudRepository<UserCourseStatus, Long>
+```
+- **Optional<UserCourseStatus> findByUserIdAndCourseId(Long userId, Long courseId)**
+- **List<UserCourseStatus> findByUserId(Long userId)**
 
 ### UserRepository
 ```java
-// Поиск по email
-Optional<User> findByEmail(String email);
+package com.footprints.repositories;
+public interface UserRepository extends CrudRepository<User, Long>, PagingAndSortingRepository<User, Long> 
+```
+- **Optional<User> findByUserEmail(String email)**
+- **List<User> findByUsername(String username)**
+- **boolean existsByUserEmail(String email)** 
 
-// Проверка существования пользователя по email
-boolean existsByEmail(String email);
+### UserRolesRepository
+```java
+package com.footprints.repositories;
+public interface UserRolesRepository extends CrudRepository<UserRoles, Integer> 
 ```
 
 ### UserSectionStatusRepository
 ```java
-// Установка/обновление статуса завершения раздела
-default void setCompletionStatus(Long userId, Long sectionId, Boolean isCompleted) { ... }
-
-// Обновление статуса (только для существующих записей)
-default void updateCompletionStatus(Long userId, Long sectionId, Boolean isCompleted) { ... }
-
-// Основные операции:
-UserSectionStatus save(UserSectionStatus status);
-Optional<UserSectionStatus> findByUserIdAndSectionId(Long userId, Long sectionId);
-List<UserSectionStatus> findByUserId(Long userId);
-List<UserSectionStatus> findByUserIdAndIsCompleted(Long userId, Boolean isCompleted);
+package com.footprints.repositories;
+public interface UserSectionStatusRepository extends CrudRepository<UserSectionStatus, Integer> 
 ```
+- **Optional<UserSectionStatus> findByUserIdAndSectionId(Long userId, Long sectionId)**
+- **List<UserSectionStatus> findByUserId(Long userId)**
+- **List<UserSectionStatus> findByUserIdAndIsCompleted(Long userId, Boolean isCompleted)** 
+
+### UserSessionLogsRepository
+```java
+package com.footprints.repositories;
+public interface UserSessionLogsRepository extends CrudRepository<UserSessionLogs, Long>, PagingAndSortingRepository<UserSessionLogs, Long> 
+```
+- **Page<UserSessionLogs> findByUserId(Long userId, Pageable pageable)**
+
+### UserStatusRepository
+```java
+package com.footprints.repositories;
+public interface UserStatusRepository extends CrudRepository<UserStatus, Long> 
+```
+- **Optional<UserStatus> findByUserId(Long userId)**
